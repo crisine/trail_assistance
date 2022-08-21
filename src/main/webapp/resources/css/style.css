@@ -1,12 +1,10 @@
-
 html {
     margin:0;
     padding:0;
-    height: 100%;
     border:0;
     outline:0;
     font-size:100%;
-  	position:relative;
+    position: relative;
     min-height: 100%;
     
     
@@ -14,15 +12,8 @@ html {
 }
 	body{
         font-family: 'Montserrat', sans-serif;font-size: 12px; font-weight: 500; line-height: 24px;
-        min-height: 100%; 
-        height: 100%;
-       
-        
+        min-height: 100%;
     }
-
-   
-  
-
 	li{
         list-style: none;
     }
@@ -129,11 +120,10 @@ html {
 .navbar-nav li{
     display: inline;
     
-    font-size: 30px;
+    font-size: 40px;
     margin-left: 60px;
     
 }
-
 
 
 	.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle {
@@ -151,9 +141,6 @@ html {
 	.navbar-brand {
         margin-right: 30px; margin-top: 10px;height: 28px;
 }
-	
-	
-
 	
 	@media (max-width:767px) {
 		#top .pull-left, #top .pull-right {width: 100%}
@@ -173,53 +160,46 @@ html {
 
 
 
-.container .row .panel{
-
-    float: right;
-    
-}
-
 
 
 
 /* Footer */
 
-footer {
-    background: gray; 
-    font-size: 20px;
-    width:100%;
-    position:absolute;
-    padding: 20px 0px;
+section {
     padding: 20px 0;
+    position: absolute;
     left: 0;
-    bottom: -70%;
+    bottom: 0;
     width: 100%;
-
-  
     
      
     
     
 }
 
-footer a {
+section .section-title {
     text-align: center;
-    color: white;
+    color: #007b5e;
     margin-bottom: 50px;
     text-transform: uppercase;
    
 }
-
+#footer {
+    background: gray; 
+    font-size: 20px;
+    padding: 20px 0px;
     
     
+    
+    
+}
 
-
-footer .system h4{
+#footer .system h4{
     color: #ffffff;
     font-size: 20px;
     font-weight: bold; 
 }
-footer .system li{
+#footer .system li{
     
     padding: 3px;
     color: white;
@@ -288,7 +268,7 @@ footer .system li{
 }
 
 
-footer ul.social li a i {
+#footer ul.social li a i {
     margin-right: 5px;
 	font-size:25px;
 	-webkit-transition: .5s all ease;
@@ -296,22 +276,18 @@ footer ul.social li a i {
 	transition: .5s all ease;
     
 }
-footer ul.social li:hover a i {
+#footer ul.social li:hover a i {
 	font-size:30px;
 	margin-top:-10px;
     
 }
 
-footer ul.social li a,
-footer  li p{
+#footer ul.social li a,
+#footer  li p{
 	color:#ffffff;
    
     
 }
-footer ul.social li a:hover{
+#footer ul.social li a:hover{
 	color:#eeeeee;
 }
-
-
-
-

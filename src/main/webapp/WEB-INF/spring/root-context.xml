@@ -14,10 +14,10 @@
 	
 	
 	
-	<!--db 관련 
+	
 	
 	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-		<property name="location" value="classpath:/db-config/Hikari.properties" />
+		<property name="location" value="classpath:/db-config/Hikariconfig.properties" />
 	</bean>
 
 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
@@ -34,12 +34,12 @@
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="ds" />
 
-		<property name="configLocation" value="WEB-INF/config/mybatis-config.xml" />
+		<property name="configLocation" value="WEB-INF/spring/mybatis-config.xml" />
 		<property name="mapperLocations" value="classpath:/mappers/*.xml" />
 	</bean>
 
-	<mybatis-spring:scan base-package="com.assistance.trial"/>
-   -->
+	<mybatis-spring:scan base-package="com.assistance.trial.assistant.mapper"/>
+ 
    
    
    

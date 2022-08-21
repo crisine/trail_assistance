@@ -1,7 +1,6 @@
 *{
     margin: 0;
     padding: 0;
-   
 }
 /* 공백과 줄바꿈을 지정하는 명령어  */
 .normal {white-space:normal;}
@@ -32,58 +31,193 @@ html{
     font-size: 10px;
 }
 
-body{
-	height:3000px
+ul, li{
+    list-style: none;
 }
 
-/* ========== board_list ========== */
-
-.board-table{
-    margin: 0 auto;
-    float: none;
-
-}
-.search-wrap{
-
-    margin-bottom: 20px;
-
+a{
+    text-decoration: none;
+    color: inherit;
 }
 
-.search-btn,
-.search-input,
-.search-select{
+.board_wrap{
+    width: 1200px;
+    margin: 200px auto;
+    padding-left: 200px;
+}
+
+.board_title{
+    margin-bottom: 50px;
+}
+
+.board_title strong{
+    font-size: 3rem;
+}
+
+
+.board_wrap .container{
+    padding-top: 30px;
+}
+
+
+.bt_wrap{
+    margin-top: 30px;
     float: right;
-}
+    font-size: 0;
 
-.search-input{
-    width: 200px;
-    
-}
 
-.search-select{
-    width: 100px;
-}
-
-.table-bordered > thead > tr > th{
-    background: #e7f2f9;
-    color: #003366;
-
-}
-.table-bordered > tbody > tr > td > a,
-.table-bordered > tbody > tr > td > a:hover {
-    color: black;
-}
-
-.pagination{
-    margin: 0;
 
 }
 
-.text-center .btn{
-    float: right;
-    border: 0;
-    border-radius: 0;
-    padding: 5px 10px ;
+.bt_wrap .buut{
+   margin: 30px;
+   float: right;
+}
+
+.bt_wrap .butt1{
+    margin: 5px;
+}
+
+.bt_wrap .butt2{
+    margin: 5px;
+}
+
+.bt_wrap .butt3{
+    margin: 10px;
+}
+
+
+/*  버튼 사이간격 꾸미기 / 벌리기  
+.bt_wrap a{
+    display: inline-block;
+    min-width: 80px;
+    padding: 10px;
+    border: 1px solid #000;
+    border-radius: 2px;
+    font-size: 1.4rem;
+    margin: 10px;
+   
+} 
+.bt_wrap a:first-child{
+    margin-left: 0;
+}
+.bt_wrap a.on{
+    background : #000;
+    color: #fff;
+    padding: 10px;
+} */
+
+.board_list_wrap{
+    margin-top: 100px;
+}
+
+
+
+.board_list{
+    width: 100%;
+    border-top: 2px solid #000;
+}
+
+.board_list > div{
+    border-bottom:1px solid #ddd;
+    font-size: 0;
+
+}
+
+.board_list > div.top{
+    border-bottom:1px solid #999;
+
+}
+
+.board_list > div:last-child{
+    border-bottom:2px solid #000;
+
+}
+
+.board_list > div > div {
+    display: inline-block;
+    padding: 15px 0;
+    text-align: center;
+    font-size: 1.4rem;
+}
+
+.board_list > div.top > div {
+    font-weight: 600;
+}
+
+.board_list .num {
+    width: 10%;
+
+}
+
+.board_list .title {
+    width: 60%;
+    text-align: left;
+}
+
+.board_list .top .title{
+    text-align: center;
+}
+
+.board_list .writer {
+    width: 10%;
+
+}
+
+
+.board_list .date {
+    width: 10%;
+
+}
+
+
+.board_list .count {
+    width: 10%
+
+}
+
+.board_list_wrap .board_list .call .next{
+    width: 10%;
+}
+
+.board_page{
+    margin-top: 30px;
+    text-align: center;
+    font-size: 0;
+
+}
+.board_page a{
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    box-sizing: border-box;
+    vertical-align: middle;
+    border: 1px solid #ddd;
+    border-left: 0;
+    line-height: 100%;
+
+}
+
+.board_page a.bt{
+    padding-top: 10px;
+    font-size: 1.2rem;
+    letter-spacing: -1px;
+}
+
+.board_page a.num{
+    padding-top: 9px;
+    font-size: 1.4rem;
+}
+
+.board_page a.num.on{
+   border-color: #000;
+   background: #000;
+   color: #fff;
+}
+
+
+.board_page a:first-child{
+    border-left: 1px solid #ddd;
 }
 
 .board_view{
