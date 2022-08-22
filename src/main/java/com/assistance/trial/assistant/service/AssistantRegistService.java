@@ -22,5 +22,6 @@ public class AssistantRegistService implements IAssistantRegistService{
 	@Override
 	public void update(AssistantRegistVO vo) {
 		mapper.update(vo);
+		//System.out.println(vo.getMid());
 	}
 }
