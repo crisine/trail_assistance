@@ -10,6 +10,7 @@ pom.properties
 *Mapper.xml
 *config.properties
 .classpath
+log4j2.properties
 MANIFEST.MF
 
 ### Eclipse ###
