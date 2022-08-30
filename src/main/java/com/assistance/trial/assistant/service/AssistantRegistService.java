@@ -24,4 +24,19 @@ public class AssistantRegistService implements IAssistantRegistService{
 		mapper.update(vo);
 		//System.out.println(vo.getMid());
 	}
+
+	@Override
+	public AssistantRegistVO getAll() {
+		return mapper.getAll();
+	}
+	
+	@Override
+	public AssistantRegistVO selectOne(int assistantId) {
+		return mapper.selectOne(assistantId);
+	}
+	
+	@Override
+	public AssistantRegistVO selectOneByAccId(int accId) {
+		return mapper.selectOneByAccId(accId);
+	}
 }

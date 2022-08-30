@@ -39,35 +39,22 @@
 	</bean>
 
 	<mybatis-spring:scan base-package="com.assistance.trial.assistant.mapper"/>
- 
+	<mybatis-spring:scan base-package="com.assistance.trial.account.mapper"/>
+	<mybatis-spring:scan base-package="com.assistance.trial.admin.mapper"/>
+	<mybatis-spring:scan base-package="com.assistance.trial.mypage.mapper"/>
+	<mybatis-spring:scan base-package="com.assistance.trial.articleboard.mapper"/>
+	<mybatis-spring:scan base-package="com.assistance.trial.noticeboard.mapper"/>
+	<mybatis-spring:scan base-package="com.assistance.trial.faqboard.mapper"/>
+	<mybatis-spring:scan base-package="com.assistance.trial.oneboard.mapper"/>
+	<mybatis-spring:scan base-package="com.assistance.trial.eval.mapper"/>
+ 	<mybatis-spring:scan base-package="com.assistance.trial.form.mapper"/>
    
    
    
    
    
-   
-   
-   <!-- 이메일 관련 사항 
-	<context:property-placeholder location="classpath:/db-config/email.properties" />
-	<bean id="mailSender"
-		class="org.springframework.mail.javamail.JavaMailSenderImpl">
-		<property name="host" value="smtp.gmail.com" />
-		<property name="port" value="587" />
-		<property name="username" value="${email.account}" />
-		<property name="password" value="${email.password}" />
-		
-		<property name="javaMailProperties">
-			<props>
-				<prop key="mail.transport.protocol">smtp</prop>
-				<prop key="mail.smtp.auth">true</prop>
-				<prop key="mail.smtp.starttls.enable">true</prop>
-				<prop key="mail.debug">true</prop>
-				<prop key="mail.smtp.ssl.trust">smtp.gmail.com</prop>
-				<prop key="mail.smtp.ssl.protocols">TLSv1.2</prop>
-			</props>
-		</property>
-	</bean>
- 	-->
+
+
 
 
 </beans>

@@ -1,94 +1,137 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-    
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>header</title>
-    <script src="https://kit.fontawesome.com/89b715172c.js" crossorigin="anonymous">
-    </script>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>header</title>
+<script src="https://kit.fontawesome.com/89b715172c.js"
+	crossorigin="anonymous">
+	
+</script>
 
 
-	  <link href="${pageContext.request.contextPath }/resources/css/bootstrap.css" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <!--개인 디자인 추가-->
-    <link href="${pageContext.request.contextPath }/resources/css/style.css" rel="stylesheet">
-    <script src="${pageContext.request.contextPath }/resources/js/bootstrap.js"></script>
 
+<link
+	href="${pageContext.request.contextPath }/resources/css/bootstrap.css"
+	rel="stylesheet">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<!--개인 디자인 추가-->
+<%-- <link href="${pageContext.request.contextPath }/resources/css/style.css"
+	rel="stylesheet"> --%>
+<script
+	src="${pageContext.request.contextPath }/resources/js/bootstrap.js"></script>
+
+<style>
+.container-fluid {
+	margin: none;
+}
+
+.navbar-header {
+	font-size: 35px;
+	color: white;
+	margin-left: 0px;
+}
+
+.fa-scale-balanced {
+	margin: 25px 0px 0px 30px;
+}
+
+header li {
+	font-size: 24px;
+	margin-left: 0px;
+	display: inline;
+}
+</style>
 </head>
 <body>
-	 <!------ Header ---------->
+	<!------ Header ---------->
 
-       <header>
-        
-      <div class="wrap" style="min-width: 1400px;">
-        <div id="top">
-            <div class="clearfix">
-            <div class="container-fluid">
-                <div class="search-box">
-                    <form action="." method="post">
-                      <input class="search-txt" type="text" placeholder="검색어를 입력해 주세요">
-                      <a href="#" class="search-btn" type="submit"> 
-                        <i class="fas fa-search"></i>
-                        </a>
-                    </form>
-                  </div>
-                
-                <div class="pull-right">
-                    <p class="social clearfix" style="margin-top: 7px;">
-                        <a href="#"><i class="fa-solid fa-user-plus">회원가입</i></a>
-                        <a href="#"><i class="fa-solid fa-user"></i>로그인</a>
-                        <a href="#"><i class="fa-solid fa-house-chimney"></i>홈</a>
-                        <a href="#"><i class="fa fa-envelope"></i>메시지</a>
-                    </p>
-                </div>
-               
-            </div>
-        </div>
-        </div>
-    
-         <div class="navbar-top" data-spy="nav" data-offset-top="100">
-             <nav class="navbar navbar-default">
-                  <div class="container-fluid">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>                        
-                         </button>
-                      <img src="<c:url value='/resources/img/image2.png'/>" width="300px" alt="Company Logo">
-                    </div>
-                      <div class="collapse navbar-collapse" id="myNavbar" algin="center">
-                        <ul class="nav navbar-nav">
-                          <li class="Home"><a href="<c:url value='/faqboard/list'/>">조력자 등재 공고</a></li>
-                          <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">고객 센터<span class="caret"></span></a>
-                           <ul class="dropdown-menu">
-                           <li><a href="<c:url value='/articleboard/list' />">공고 사항</a></li>
-                           <li><a href="<c:url value='/noticeboard/list' />">공지 사항</a></li>
-                           <li><a href="<c:url value='/faqboard/list' />">FAQ</a></li>
-
-                           </ul>
-                          </li>
-                          <li><a href="#">조력자 신청</a></li>
-                       
-                          <li><a href="#">마이페이지</a></li>
-						</div>
-                  </div>
-             </nav>
-
-             
-        </div>
-      </div>
+	<header>
+		<nav class="navbar navbar-inverse">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<i class="fa-solid fa-scale-balanced"><a
+						href="${pageContext.request.contextPath}"
+						style="color: white; text-decoration: none;">온라인감정신청</a></i>
+				</div>
+				<c:choose>
+					<c:when test="${login == null}">
 
 
 
-    </header>
-    
-    
+						<ul class="nav navbar-nav navbar-right">
+							<li><a href="<c:url value="/account/user_join" />"><span
+									class="glyphicon glyphicon-user"></span> 회원가입</a></li>
+							<li><a href="<c:url value="/account/login" />"><span
+									class="glyphicon glyphicon-log-in"></span> 로그인</a></li>
+						</ul>
+					</c:when>
 
 
+
+					<c:otherwise>
+
+
+						<ul class="nav navbar-nav navbar-right">
+
+							<li><a href="<c:url value='/account/logout'/>"> <i
+									class="fa-solid fa-user"></i>로그아웃
+							</a></li>
+						</ul>
+
+					</c:otherwise>
+				</c:choose>
+
+
+
+			</div>
+			<br>
+
+
+			<div class="container-fluid">
+
+				<div class="col-md-3"></div>
+
+				<ul class="nav navbar-nav row">
+
+					<c:choose>
+						<c:when test="${login.type != 1}">
+							<li><a href="<c:url value='/assistant/category_select'/>"
+								class="menu">조력자 신청</a></li>
+						</c:when>
+						<c:otherwise>
+							<li><a
+								href="<c:url value='/admin/manage_assistant_history' />">조력자
+									관리</a></li>
+						</c:otherwise>
+					</c:choose>
+
+
+					<li><a href="<c:url value='/articleboard/list'/>" class="menu">조력자
+							등재 공고</a></li>
+
+
+
+
+
+					<li><a href="<c:url value='/noticeboard/list'/>" class="menu">고객
+							센터</a></li>
+
+					<c:if test="${login.type != 1}">
+						<li><a href="<c:url value='/mypage/mypagePasswordAuth'/>"
+							class="menu">마이 페이지</a></li>
+					</c:if>
+				</ul>
+			</div>
+		</nav>
+
+
+
+	</header>

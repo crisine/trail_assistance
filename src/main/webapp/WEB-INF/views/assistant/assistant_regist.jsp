@@ -13,6 +13,68 @@
 .table>tbody>tr>td.add_rowspan {
 	vertical-align: middle;
 }
+
+/* 푸터 스타일 추가 22-08-29 */
+.footer {
+  left: 0;
+  bottom: 0;
+  right:0;
+  width: 100%;
+}
+
+.footer-bs {
+    background-color: #333;
+	padding: 30px 20px;
+	color: rgba(255,255,255,1.00);
+}
+
+.footer-bs .footer-brand, .footer-bs .footer-nav, .footer-bs .footer-social, .footer-bs .footer-ns { padding:10px 25px; }
+.footer-bs .footer-nav, .footer-bs .footer-social, .footer-bs .footer-ns { border-color: transparent; }
+.footer-bs .footer-brand h2 { margin:0px 0px 10px; }
+.footer-bs .footer-brand p { font-size:12px; color:rgba(255,255,255,0.70); }
+
+.footer-bs .footer-nav ul.pages { list-style:none; padding:0px; }
+.footer-bs .footer-nav ul.pages li { padding:5px 0px;}
+.footer-bs .footer-nav ul.pages a { color:rgba(255,255,255,1.00); font-weight:bold; text-transform:uppercase; }
+.footer-bs .footer-nav ul.pages a:hover { color:rgba(255,255,255,0.80); text-decoration:none; }
+.footer-bs .footer-nav h4 {
+	font-size: 18px;
+	text-transform: uppercase;
+	letter-spacing: 3px;
+	margin-bottom:10px;
+}
+
+.footer-bs .footer-nav ul.list { list-style:none; padding:0px; }
+.footer-bs .footer-nav ul.list li { padding:5px 0px;}
+.footer-bs .footer-nav ul.list a { color:rgba(255,255,255,0.80); }
+.footer-bs .footer-nav ul.list a:hover { color:rgba(255,255,255,0.60); text-decoration:none; }
+
+.footer-bs .footer-social ul { list-style:none; padding:0px; }
+.footer-bs .footer-social h4 {
+	font-size: 18px;
+	text-transform: uppercase;
+	letter-spacing: 3px;
+}
+.footer-bs .footer-social li { padding:5px 4px;}
+.footer-bs .footer-social a { color:rgba(255,255,255,1.00);}
+.footer-bs .footer-social a:hover { color:rgba(255,255,255,0.80); text-decoration:none; }
+
+.footer-bs .footer-ns h4 {
+	font-size: 11px;
+	text-transform: uppercase;
+	letter-spacing: 3px;
+	margin-bottom:10px;
+}
+.footer-bs .footer-ns p { font-size:12px; color:rgba(255,255,255,0.70); }
+
+@media (min-width: 768px) {
+	.footer-bs .footer-nav, .footer-bs .footer-social, .footer-bs .footer-ns { border-left:solid 1px rgba(255,255,255,0.10); }
+}
+
+footer li a {
+	font-size: 15px;
+}
+
 </style>
 	<%@ include file="../include/header.jsp"%>
 
@@ -26,15 +88,16 @@
 				<!-- 중앙 공간-->
 				<div class="col-md-8">
 
-					<h2>조력자 신청</h2>
-
-					<form action="<c:url value='/assistant/regist'/>" method="post">
+					<h2>${contents}조력자 신청</h2>
+					
+					<form action="<c:url value='/assistant/regist'/>" method="post" name="helper_assistant">
 						<br> <br>
 
 
-
+				
+							
 						<!--  감정 분야 선택 -->
-						<div>
+				<!--2022.08.30 		<div>
 							<h3>감정분야 및 세부 구분 선택</h3>
 							<hr>
 							<span>감정 분야 선택</span>
@@ -49,18 +112,16 @@
 							<hr>
 						</div>
 
-						<br>
+						<br> -->
 
 
 						<!-- 희망 법원 선택 -->
 						<div>
 							<h3>희망 법원 선택</h3>
 							<hr>
-							<span>법원 목록</span> <span>희망 법원</span>
 
 							<div>
-								<span> 희망 법원 선택</span> <select name="law" multiple="multiple"
-									id='law' size="10">
+								 <select name="law" id='law' size="10" style="width: 150px; height: 200px;">
 									<option>대법원</option>
 									<option>서울고등법원</option>
 									<option>서울고등법원(춘천)</option>
@@ -70,9 +131,10 @@
 									<option>광주고등법원</option>
 									<option>대전고등법원</option>
 								</select>
-								<button type="button" id='btn_add'>법원 선택</button>
-								<button type="button" id='btn_minus'>법원 빼기</button>
-								<select name="law2" multiple="multiple" id='law2' size="10">
+								
+								<button type="button" id='btn_add' style="position:relative; bottom: 150px; left: 20px;">></button>
+								<button type="button" id='btn_minus' style="position:relative; bottom: 50px; right: 12px;"><</button>
+								<select name="law2" id='law2' size="10" style="width: 150px; height: 200px;">
 								</select>
 							</div>
 							<hr>
@@ -80,127 +142,138 @@
 						</div>
 
 
-						<div>
-							<h3>신청인 기본정보</h3>
-							<hr>
-							<table class="table table-bordered">
-								<tbody>
-									<tr>
-										<td>조력자명</td>
-										<td>
-											<input type="text" name="helper_name" id="helper_name" class="form-control">
-										</td>
-										<td>주민등록번호</td>
-										<td>
-											<input type="text" name="helper_ssn_number"	id="helper_ssn_number" class="form-control">
-										</td>
-									</tr>
-									<tr>
-										<td>휴대전화번호</td>
-										<td>
-											<input type="text" name="helper_phone_tel" id="helper_phone_tel" class="form-control">
-										</td>
-										<td>전화번호</td>
-										<td>
-											<input type="text" name="helper_home_tel" id="helper_home_tel" class="form-control">
-										</td>
-									</tr>
-
-									<tr>
-										<td>이메일</td>
-										<td>
-											<input type="text" name="helper_email_address" id="helper_email_address" class="form-control">
-										</td>
-										<td>직업</td>
-										<td>
+							<div>
+						<h3>신청인 기본정보</h3>
+						<hr>
+						<table class="table table-bordered">
+							<tbody>
+								<tr>
+									<td>조력자명</td>
+									<td>
+										<input type="text" name="helper_name" id="helper_name" class="form-control">
+									</td>
+									<td>주민등록번호</td>
+									<td>
+										<input type="text" name="helper_ssn_number" id="helper_ssn_number"
+											class="form-control">
+									</td>
+								</tr>
+								<tr>
+									<td>휴대전화번호</td>
+									<td>
+										<input type="text" name="helper_phone_tel" id="helper_phone_tel"
+											class="form-control">
+									</td>
+									<td>전화번호</td>
+									<td>
+										<input type="text" name="helper_home_tel" id="helper_home_tel" class="form-control">
+									</td>
+								</tr>
+	
+								<tr>
+									<td>이메일</td>
+									<td>
+										<input type="text" name="helper_email_address" id="helper_email_address"
+											class="form-control">
+									</td>
+									<td>직업</td>
+									<td>
 										<input type="text" name="helper_job" id="helper_job" class="form-control">
-										</td>
-									</tr>
-									
-									<tr>
-										<td rowspan="3" class="add_rowspan">주소</td>
-										<td>우편주소</td>
-										<td colspan="2">
-											<div class="row">
-												<div class="col-md-4">
-													<input type="text" name="helper_zipcode" id="helper_zipcode" class="form-control">
-												</div>
-												<button type="button" class="btn" onclick="goPopup()">주소찾기</button>
+									</td>
+								</tr>
+	
+								<tr>
+									<td rowspan="3" class="add_rowspan">주소</td>
+									<td>우편주소</td>
+									<td colspan="2">
+										<div class="row">
+											<div class="col-md-4">
+												<input type="text" name="helper_zipcode" id="helper_zipcode"
+													class="form-control" readonly="readonly">
 											</div>
-										</td>
-									</tr>
-									<tr>
-										<td>주소</td>
-										<td colspan="2">
-											<input type="text" name="helper_address1" id="helper_address1" class="form-control">
-										</td>
-									</tr>
-									<tr>
-										<td>상세주소</td>
-										<td colspan="2">
-											<input type="text" name="helper_address2" id="helper_address2" class="form-control">
-										</td>
-									</tr>
-								</tbody>
-							</table>
-							<hr>
+											<button type="button" class="btn" onclick="goPopup()">주소찾기</button>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td>주소</td>
+									<td colspan="2">
+										<input type="text" name="helper_address1" id="helper_address1" class="form-control" readonly="readonly">
+									</td>
+								</tr>
+								<tr>
+									<td>상세주소</td>
+									<td colspan="2">
+										<input type="text" name="helper_address2" id="helper_address2" class="form-control">
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<hr>
+	
+					</div>
 
-						</div>
 
-
-						<div>
-							<h3>사무소 정보</h3>
-							<table class="table table-bordered">
-								<tbody>
-									<tr>
-										<td>사무소명</td>
-										<td>
-											<input type="text" name="helper_office_name" id="helper_office_name" class="form-control">
-										</td>
-										<td>사업자등록번호</td>
-										<td>
-											<input type="text" name="helper_bussiness_reg_num" id="helper_bussiness_reg_num" class="form-control">
-										</td>
-									</tr>
-
-									<tr>
-										<td>사무소전화번호</td>
-										<td>
-											<input type="text" name="helper_offic_tel" id="helper_offic_tel" class="form-control">
-										</td>
-										<td>사무소펙스번호</td>
-										<td>
-											<input type="text" name="helper_offic_fax_tel" id="helper_offic_fax_tel" class="form-control">
-										</td>
-									</tr>
-									<tr>
-										<td rowspan="3" class="add_rowspan">주소</td>
-										<td>우편주소</td>
-										<td colspan="2">
-											<div class="row">
-												<div class="col-md-4">
-													<input type="text" name="helper_office_zipcode"	id="helper_office_zipcode" class="form-control">
-												</div>
-												<button type="button" class="btn office_add" onclick="goPopup2()" >주소찾기</button>
+					<div>
+						<h3>사무소 정보</h3>
+						<table class="table table-bordered">
+							<tbody>
+								<tr>
+									<td>사무소명</td>
+									<td>
+										<input type="text" name="helper_office_name" id="helper_office_name"
+											class="form-control">
+									</td>
+									<td>사업자등록번호</td>
+									<td>
+										<input type="text" name="helper_bussiness_reg_num" id="helper_bussiness_reg_num"
+											class="form-control">
+									</td>
+								</tr>
+	
+								<tr>
+									<td>사무소전화번호</td>
+									<td>
+										<input type="text" name="helper_offic_tel" id="helper_offic_tel"
+											class="form-control">
+									</td>
+									<td>사무소팩스번호</td>
+									<td>
+										<input type="text" name="helper_offic_fax_tel" id="helper_offic_fax_tel"
+											class="form-control">
+									</td>
+								</tr>
+								<tr>
+									<td rowspan="3" class="add_rowspan">주소</td>
+									<td>우편주소</td>
+									<td colspan="2">
+										<div class="row">
+											<div class="col-md-4">
+												<input type="text" name="helper_office_zipcode" id="helper_office_zipcode"
+													class="form-control" readonly="readonly">
 											</div>
-										</td>
-									</tr>
-									<tr>
-										<td>주소</td>
-										<td colspan="2">
-											<input type="text" name="helper_office_address1" id="helper_office_address1"	class="form-control">
-										</td>
-									</tr>
-									<tr>
-										<td>상세주소</td>
-										<td colspan="2">
-											<input type="text" name="helper_office_address2" id="helper_office_address2" class="form-control">
-										</td>
-									</tr>
-								</tbody>
-							</table>
-
-						</div>
+											<button type="button" class="btn office_add" onclick="goPopup2()">주소찾기</button>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td>주소</td>
+									<td colspan="2">
+										<input type="text" name="helper_office_address1" id="helper_office_address1"
+											class="form-control" readonly="readonly">
+									</td>
+								</tr>
+								<tr>
+									<td>상세주소</td>
+									<td colspan="2">
+										<input type="text" name="helper_office_address2" id="helper_office_address2"
+											class="form-control">
+									</td>
+								</tr>
+							</tbody>
+						</table>
+	
+					</div>
 
 						<br>
 
@@ -268,8 +341,8 @@
 
 
 						<br> <br>
-						<div class="submit_btn_div text-center">
-							<button class="btn btn-lg submit_btn" type="submit">신청</button>
+						<div class="submit_btn_div text-center" style="margin:30px;">
+							<button class="btn btn-lg  btn-default submit_btn" type="button">신청</button>
 						</div>
 
 					</form>
@@ -292,15 +365,284 @@
 
 
 
+<div class="footer">
+    <footer class="footer-bs">
+        <div class="row">
+        	<div class="col-md-3 footer-brand animated fadeInLeft">
+            	<h2>온라인감정신청</h2>
+                <p>Suspendisse hendrerit tellus laoreet luctus pharetra. Aliquam porttitor vitae orci nec ultricies. Curabitur vehicula, libero eget faucibus faucibus, purus erat eleifend enim, porta pellentesque ex mi ut sem.</p>
+                <p>© All Rights Reserved</p>
+            </div>
+        	<div class="col-md-4 footer-nav animated fadeInUp">
+            	<h4>안내</h4>
+            	<div class="col-md-6">
+                    <ul class="pages">
+                        <li><a href="#">주소</a></li>
+                        <li><a href="#"></a></li>
+                        <li><a href="#">서울시 강남구 강남대로</a></li>
+                        <li><a href="#">강남아파트</a></li>
+                        <li><a href="#">강남빌딩 7층 비트코인사무실</a></li>
+                    </ul>
+                </div>
+            	<div class="col-md-6">
+                    <ul class="list">
+                        <li><a href="#">담당자 번호</a></li>
+                        <li><a href="#">02-747-1234</a></li>
+                        <li><a href="#"></a></li>
+                        <li><a href="#">팩스 번호</a></li>
+                        <li><a href="#">777-1111-2222</a></li>
+                    </ul>
+                </div>
+            </div>
+        	<div class="col-md-3 footer-social animated fadeInDown text-center">
+            	<h4>BitCoin</h4>
+            	<ul>
+                	<li><a href="#">나경민</a></li>
+                	<li><a href="#">성민호</a></li>
+                	<li><a href="#">최필규</a></li>
+                	<li><a href="#">정승구</a></li>
+                	<li><a href="#">천용혁</a></li>
+                	<li><a href="#">황교욱</a></li>
+                </ul>
+            </div>
+        	<div class="col-md-2 footer-ns animated fadeInRight">
+            	<h4>Newsletter</h4>
+                <p>A rover wearing a fuzzy suit doesn’t alarm the real penguins</p>
+                <p>
+                 </p>
+            </div>
+        </div>
+    </footer>
+</div>
 
-
-<script
-	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
 <script>
 
-	$(document).ready(function(){
+//주소 찾기 API 사용
+	function goPopup(){
+	//주소 찾기 버튼을 누르면 절대경로로 팝업창을 오픈
+	var pop = window.open("${pageContext.request.contextPath}/resources/popup/jusoPopup.jsp","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
+
+};
+
+
+function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAddr, jibunAddr, zipNo, admCd, rnMgtSn, bdMgtSn,detBdNmList,bdNm,bdKdcd,siNm,sggNm,emdNm,liNm,rn,udrtYn,buldMnnm,buldSlno,mtYn,lnbrMnnm,lnbrSlno,emdNo){
+	//콜백 방식으로 받아온 데이터를 가입 폼에 자동 완성.
+	document.getElementById('helper_address1').value=roadAddrPart1;
+	document.getElementById('helper_address2').value=addrDetail;
+	document.getElementById('helper_zipcode').value=zipNo;
 		
+};
+function goPopup2(){
+	//주소 찾기 버튼을 누르면 절대경로로 팝업창을 오픈
+	var pop = window.open("${pageContext.request.contextPath}/resources/popup/jusoPopup2.jsp","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
+
+};
+
+
+function jusoCallBack2(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAddr, jibunAddr, zipNo, admCd, rnMgtSn, bdMgtSn,detBdNmList,bdNm,bdKdcd,siNm,sggNm,emdNm,liNm,rn,udrtYn,buldMnnm,buldSlno,mtYn,lnbrMnnm,lnbrSlno,emdNo){
+	document.getElementById('helper_office_address1').value=roadAddrPart1;
+	document.getElementById('helper_office_address2').value=addrDetail;
+	document.getElementById('helper_office_zipcode').value=zipNo;	
+};
+
+
+
+$(function() {
+
+	// 입력값 검사용 정규식 나열
+	const getHelperNameCheck = RegExp(/^[가-힣]+$/);
+	const getPhoneNumCheck = RegExp(/\d{3}-\d{4}-\d{4}/);
+	const getHelperSsnCheck = RegExp(/\d{6}-\d{7}/);
+	const getHelperEmailCheck = RegExp(/\S+@\S+\.\S+/);
+	const getHelperBusinessRegCheck = RegExp(/\d{3}-\d{2}-\d{5}/);
+	const getHelperOfficeTelCheck = RegExp(/\d{4}-\d{4}/);
+	const getHelperOfficeFaxCheck = RegExp(/\d{3}-\d{4}-\d{4}/);
+
+	// 각 항목 입력값 체크
+	let chk1 = false,
+		chk2 = false,
+		chk3 = false,
+		chk4 = false,
+		chk5 = false,
+		chk6 = false,
+		chk8 = false,
+		chk9 = false,
+		chk10 = false,
+		chk11 = false;
+	
+
+	$('#helper_name').keyup(function() {
+		if ($(this).val() === '') {
+			$(this).css('background', 'pink');
+			chk1 = false;
+		} else if (!getHelperNameCheck.test($(this).val())) {
+			$(this).css('background', 'pink');
+			chk1 = false;
+		} else {
+			$(this).css('background', '');
+			chk1 = true;
+		}
+	});
+
+	$('#helper_ssn_number').keyup(function() {
+		if ($(this).val() === '') {
+			$(this).css('background', 'pink');
+			chk2 = false;
+		} else if (!getHelperSsnCheck.test($(this).val())) {
+			$(this).css('background', 'pink');
+			chk2 = false;
+		} else {
+			$(this).css('background', '');
+			chk2 = true;
+		}
+	});
+
+	$('#helper_phone_tel').keyup(function() {
+		if ($(this).val() === '') {
+			$(this).css('background', 'pink');
+			chk3 = false;
+		} else if (!getPhoneNumCheck.test($(this).val())) {
+			$(this).css('background', 'pink');
+			chk3 = false;
+		} else {
+			$(this).css('background', '');
+			chk3 = true;
+		}
+	});
+
+	// 일반 전화번호는 지역번호 크기가 2~3자이므로 적용방법 알아올 것
+	$('#helper_home_tel').keyup(function() {
+		if ($(this).val() === '') {
+			$(this).css('background', 'pink');
+			chk4 = false;
+		} else {
+			$(this).css('background', '');
+			chk4 = true;
+		}
+	});
+
+	$('#helper_email_address').keyup(function() {
+		if ($(this).val() === '') {
+			$(this).css('background', 'pink');
+			chk5 = false;
+		} else if (!getHelperEmailCheck.test($(this).val())) {
+			$(this).css('background', 'pink');
+			chk5 = false;
+		} else {
+			$(this).css('background', '');
+			chk5 = true;
+		}
+	});
+
+	$('#helper_job').keyup(function() {
+		if ($(this).val() === '') {
+			$(this).css('background', 'pink');
+			chk6 = false;
+		} else {
+			$(this).css('background', '');
+			chk6 = true;
+		}
+	});
+
+
+
+	$('#helper_office_name').keyup(function() {
+		if ($(this).val() === '') {
+			$(this).css('background', 'pink');
+			chk8 = false;
+		} else {
+			$(this).css('background', '');
+			chk8 = true;
+		}
+	});
+
+	$('#helper_bussiness_reg_num').keyup(function() {
+		if ($(this).val() === '') {
+			$(this).css('background', 'pink');
+			chk9 = false;
+		} else if (!getHelperBusinessRegCheck.test($(this).val())) {
+			$(this).css('background', 'pink');
+			chk9 = false;
+		} else {
+			$(this).css('background', '');
+			chk9 = true;
+		}
+	});
+
+	$('#helper_offic_tel').keyup(function() {
+		if ($(this).val() === '') {
+			$(this).css('background', 'pink');
+			chk10 = false;
+		} else if (!getHelperOfficeTelCheck.test($(this).val())) {
+			$(this).css('background', 'pink');
+			chk10 = false;
+		} else {
+			$(this).css('background', '');
+			chk10 = true;
+		}
+	});
+
+	$('#helper_offic_fax_tel').keyup(function() {
+		if ($(this).val() === '') {
+			$(this).css('background', 'pink');
+			chk11 = false;
+		} else if (!getHelperOfficeFaxCheck.test($(this).val())) {
+			$(this).css('background', 'pink');
+			chk11 = false;
+		} else {
+			$(this).css('background', '');
+			chk11 = true;
+		}
+	});
+
+
+
+ 	$('.submit_btn').click(function() {
+	
+
+	/* 	if ($('#mid').val() !== 'sel' && $('#small').val() === 'sel') {
+			alert('조력자 소분야를 다시 설정하세요');
+			return
+		} */
+		console.log(chk1);
+		console.log(chk2);
+		console.log(chk3);
+		console.log(chk4);
+		console.log(chk5);
+		console.log(chk6);
+
+		console.log(chk8);
+		console.log(chk9);
+		console.log(chk10);
+		console.log(chk11);
+		if (chk1 && chk2 && chk3 && chk4 && chk5 && chk6&& chk8 &&
+			chk9 && chk10 && chk11) {
+		
+
+			$('form').submit();
+		} else {
+			alert('모든 양식을 정확하게 입력하였는지 확인해 주십시오.');
+		}
+
+});
+});
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+	$(document).ready(function(){
 		
 		/* 감정 분야 중 분류 선택에 따른  소 분류 선택*/
 		$('#mid').change(function(){
@@ -355,7 +697,7 @@
 		 	var code=$('#law2').html().trim();   //누적 코드를 저장하는 공간
 		 	var dd=[];
 		 	for(var n=0;n<selected_value.length;n++){
-				code=code+"<option>"+selected_text[n]+"</option>"
+				code=code+"<option selected='selected'>"+selected_text[n]+"</option>"
 				dd="<option>"+selected_text[n]+"</option>"
 				
 				
@@ -381,19 +723,10 @@
 			console.log($('#law2').val());
 			console.log(arr);
 			 */
-			 
-
-			 
-			 
-			 
-			 
-			 
-			 
-			 
-			
+	})
 		
-		})
-		
+	
+	
 		//희망 법원 빼기 
 		$('#btn_minus').click(function(){
 			var select = document.getElementById('law2');
@@ -413,8 +746,8 @@
 			
 			for(var aabb=0;aabb<selected_text.length;aabb++){
 				if(arr.includes(selected_text[aabb])){
-					arr2.pop(arr.indexOf(selected_text[aabb]));  //<option></option>의 형태로 저장되어 있는 배열에서 삭제함
-					arr.pop(selected_text[aabb]);  //법원 이름만 적혀있는 배열에서 삭제함
+					 arr2.splice(arr.indexOf(selected_text[aabb]),1);  //<option></option>의 형태로 저장되어 있는 배열에서 삭제함
+                    arr.splice(arr.indexOf(selected_text[aabb]),1);  //법원 이름만 적혀있는 배열에서 삭제함
 				}
 				
 			}
@@ -425,127 +758,11 @@
 			}
 		
 		})
-		
-		
-		
 
-		
-	
 	
 		
-	    }) //JQuery 종료
+	    }); //JQuery 종료
 	    
 
-	    //주소 찾기 API 사용
-	 	function goPopup(){
-			//주소 찾기 버튼을 누르면 절대경로로 팝업창을 오픈
-			var pop = window.open("${pageContext.request.contextPath}/resources/popup/jusoPopup.jsp","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
-
-		}
-
-
-		function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAddr, jibunAddr, zipNo, admCd, rnMgtSn, bdMgtSn,detBdNmList,bdNm,bdKdcd,siNm,sggNm,emdNm,liNm,rn,udrtYn,buldMnnm,buldSlno,mtYn,lnbrMnnm,lnbrSlno,emdNo){
-			//콜백 방식으로 받아온 데이터를 가입 폼에 자동 완성.
-			document.getElementById('helper_address1').value=roadAddrPart1;
-			document.getElementById('helper_address2').value=addrDetail;
-			document.getElementById('helper_zipcode').value=zipNo;
-				
-		}
-		function goPopup2(){
-			//주소 찾기 버튼을 누르면 절대경로로 팝업창을 오픈
-			var pop = window.open("${pageContext.request.contextPath}/resources/popup/jusoPopup2.jsp","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
-
-		}
-
-
-		function jusoCallBack2(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAddr, jibunAddr, zipNo, admCd, rnMgtSn, bdMgtSn,detBdNmList,bdNm,bdKdcd,siNm,sggNm,emdNm,liNm,rn,udrtYn,buldMnnm,buldSlno,mtYn,lnbrMnnm,lnbrSlno,emdNo){
-			document.getElementById('helper_office_address1').value=roadAddrPart1;
-			document.getElementById('helper_office_address2').value=addrDetail;
-			document.getElementById('helper_office_zipcode').value=zipNo;
-			
-				
-		}
-		
-		  //다음 페이지로 전달
-        $(document).on('click','.submit_btn',function(e){
-       
-         
-          //공백 검사 
-          if( $('input[name=helper_name]').val()===''){
-                   alert('이름을 입력해 주세요');
-                   return
-               }else if ($('input[name=helper_ssn_number]').val()===''){
-                   alert('주민등록번호를 입력해 주세요')
-                   return
-               }else if($('input[name=helper_phone_tel]').val()===''){
-                  alert('핸드폰 번호를 입력해 주세요');
-                  return
-              }else if($('input[name=helper_home_tel]').val()===''){
-                  alert('전화번호를 입력해 주세요');
-                  return
-              }else if($('input[name=helper_email_address]').val()===''){
-                  alert(' 이메일을 입력해 주세요');
-                  return
-              }else if($('input[name=helper_job]').val()===''){
-                  alert('직업을 입력해 주세요');
-                  return
-              }else if($('input[name=helper_zipcode]').val()===''){
-                  alert('우편번호를 주소 찾기 버튼을 통하여 입력해 주세요');
-                  return
-              }else if($('input[name=helper_address2]').val()===''){
-                  alert('상세 주소를 입력해 주세요');
-                  return
-              }else if($('input[name=helper_office_name]').val()===''){
-                  alert('사무소명을 입력해 주세요');
-                  return
-              }else if($('input[name=helper_bussiness_reg_num]').val()===''){
-                  alert('사업자등록번호를 입력해 주세요');
-                  return
-              }else if($('input[name=helper_offic_tel]').val()===''){
-                  alert('사무소전화번호를 입력해 주세요');
-                  return
-              }else if($('input[name=helper_offic_fax_tel]').val()===''){
-                  alert('사무소 펙스 번호를 입력해 주세요');
-                  return
-              }else if($('input[name=helper_office_zipcode]').val()===''){
-                  alert('사무소 우편번호를 주사 찾기 버튼을 통하여 입력해 주세요');
-                  return
-              }else if($('input[name=helper_office_address2]').val()===''){
-                  alert('사무소 상세주소를 입력해 주세요');
-                  return
-              }else if(!$('input[name=helper_sosong]').is(":checked")){
-                  alert('소송 경력이 있는지 체크해 주세요');
-                  return
-              }else if($('input[name=helper_sosong]:checked').val()==='yes'){
-                  if($('textarea[name=helper_sosong_content]').val()===''){
-                      alert('소송 경력 내용을 입력해 주세요');
-                      return
-                      }
-              } else if(!$('input[name=helper_bohum]').is(":checked")){
-                  alert('보험업계 자문 경력이 있는지 체크해 주세요');
-                  return
-              }else if($('input[name=helper_bohum]:checked').val()==='yes'){
-                  if($('textarea[name=helper_bohum_content]').val()===''){
-                      alert('보험업계 경력 내용을 입력해 주세요');
-                      return
-                      }
-              } else if(!$('input[name=helper_hyungsa]').is(":checked")){
-                  alert('형사처벌 받은 경력이 있는지 체크해 주세요');
-                  return
-              }else if($('input[name=helper_hyungsa]:checked').val()==='yes'){
-                  if($('textarea[name=helper_hyungsa_content]').val()===''){
-                      alert('형사처벌 받은 내용을 입력해 주세요');
-                      return
-                      }
-              } 
-              else{
-                  $('form').submit();
-              }
-
-
-              
-             });
-	    
-	    
 
 </script>
