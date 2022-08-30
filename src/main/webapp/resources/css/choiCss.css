@@ -1,0 +1,188 @@
+@charset "UTF-8";
+
+/*clearfix*/
+.clearfix::after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+/* mypage_assistant_detail  */
+.apply-detail-modal {
+	text-align: center;
+}
+
+#apply-detail-table th {
+	text-align: center;
+}
+
+.aplly_detail_list_btn {
+	float: right;
+}
+
+/* .detail-textarea {
+	text-align: left;
+} */
+
+/* mypage_assistant_detail  end */
+
+/* myapge_assistant_history */
+/* <!-- 개인 정의 스타일 추가 -->
+<style>
+.table>thead>tr>th {
+	text-align: center;
+	vertical-align: middle;
+}
+
+.table>tbody>tr>td {
+	text-align: center;
+	vertical-align: middle;
+}
+</style> */
+.apply-history-table {
+	margin-top: 10px;
+}
+
+.apply-history-table th, td {
+	text-align: center;
+}
+
+.apply-search-wrap input {
+	width: 10%;
+	float: right;
+}
+
+.apply-search-wrap select {
+	width: 10%;
+	float: right;
+}
+
+.apply-search-wrap button {
+	float: right;
+}
+
+/* myapge_assistant_history end */
+
+/* myapge_assistant_history paging-btn */
+.clicked {
+	background: #3788c2;
+}
+
+/* myapge_assistant_history paging-btn end */
+
+/* modify_helper_form */
+.modify-helper-table>tbody>tr>th {
+	text-align: center;
+	vertical-align: middle;
+}
+
+.modify-helper-table>tbody>tr>td {
+	text-align: center;
+	vertical-align: middle;
+}
+
+/* modify_helper_form end */
+
+/* mypagfe_password_auth*/
+.pwChk-titlebox {
+	text-align: center;
+}
+
+.pwChk-titlebox>h4 {
+	color: red;
+	font-weight: bold;
+	font-size: 20px;
+}
+
+/* mypagfe_password_auth end*/
+
+/* mypage_delete_account */
+.del-info {
+	border: 1px solid black;
+	margin: 10px 0;
+	padding: 0 10px 10px;
+}
+
+.del-info-wrap>div {
+	margin: 0 auto;
+}
+
+.del-check {
+	float: right;
+}
+
+.del-info>h2 {
+	color: rgb(226, 45, 45);
+	text-decoration: underline;
+	text-underline-position: under;
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.del-modal-btn {
+	width: 200px;
+}
+
+#userDelModal {
+	text-align: center;
+}
+
+#check-real-del {
+	margin-bottom: 10px;
+}
+/* mypage_delete_account end */
+
+
+/* com_admin_detail */
+.com-admin-titlebox > p {
+	font-size: 20px;
+	font-weight: bold;
+	text-align: center;
+}
+
+
+/* com_admin_detail end */
+
+/* com-admin-regist */
+.com-regist-btn-wrap {
+	margin-top: 20px;
+}
+
+/* com-admin-regist end */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
