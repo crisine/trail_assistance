@@ -31,4 +31,7 @@ public interface IAccountMapper {
 	//0825 최필규 추가
 	//비밀번호 확인
 	int pwCheck(AccountVO vo);
+	
+	//0831
+	int selectaccid(String email);
 }
