@@ -39,4 +39,23 @@ public class AssistantRegistService implements IAssistantRegistService{
 	public AssistantRegistVO selectOneByAccId(int accId) {
 		return mapper.selectOneByAccId(accId);
 	}
+	
+	
+	//0830 최필규 추가
+	@Override
+	public void upload1(String saveFileName) {
+		mapper.upload1(saveFileName);
+	}
+	
+	//0830 최필규 추가
+	@Override
+	public void upload2(String saveFileName) {
+		mapper.upload1(saveFileName);
+	}
+	
+	//0830 최필규 추가
+	@Override
+	public void upload3(String saveFileName) {
+		mapper.upload1(saveFileName);
+	}
 }

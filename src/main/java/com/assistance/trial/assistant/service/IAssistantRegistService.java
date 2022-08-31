@@ -13,4 +13,14 @@ public interface IAssistantRegistService {
 	AssistantRegistVO selectOne(int assistantId);
 	
 	AssistantRegistVO selectOneByAccId(int accId);
+	
+
+	//0830 최필규 추가
+	void upload1(String saveFileName);
+
+	//0830 최필규 추가
+	void upload2(String saveFileName);
+
+	//0830 최필규 추가
+	void upload3(String saveFileName);
 }
