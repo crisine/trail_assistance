@@ -45,7 +45,6 @@ public class OneBoardVO {
 	private String one_writer;
 	private String one_type;
 	private String one_cate_one;
-	private String one_cate_two;
 	private String one_file;
 	private int one_status;
 	private Timestamp one_regdate;

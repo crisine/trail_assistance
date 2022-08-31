@@ -48,6 +48,22 @@ header li {
 	margin-left: 0px;
 	display: inline;
 }
+#wrapper{
+  height: auto;
+  min-height: 100%;
+  padding-bottom: 100px;
+}
+
+.footer {
+  height: 400px;
+  position : relative;
+  transform : translateY(-100%);
+  margin-bottom: 0;
+}
+
+html, body {
+    height: 100%
+}
 </style>
 </head>
 <body>

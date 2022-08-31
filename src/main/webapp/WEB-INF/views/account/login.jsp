@@ -6,13 +6,15 @@
         .container {
             text-align: center;
         }
+        #loginbox{
+        vertical-align: middle;}
     </style>
 
 
 
     <%@ include file="/WEB-INF/views/include/header.jsp" %>
 
-    <div class="container">
+    <div class="container"  id="wrapper">
         <c:if test="${login == null}">
             <div id="loginbox" style="margin-top:50px;"
                 class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
@@ -43,9 +45,7 @@
 
                             <div class="input-group">
                                 <div class="checkbox">
-                                    <label>
-                                        <input id="login-remember" type="checkbox" name="remember" value="1"> 자동 로그인
-                                    </label>
+                                  
                                 </div>
                             </div>
 

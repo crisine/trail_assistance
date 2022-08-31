@@ -1,18 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>나의 접수 내역 조회</title>
-
-    <!-- 부트스트랩 3.1.1 가져오기 -->
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/resources/css/bootstrap.css">
-    <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script src="${pageContext.request.contextPath }/resources/js/bootstrap.js"></script>
 
     <!-- 개인 정의 스타일 추가 -->
     <style>
@@ -26,13 +14,12 @@
             vertical-align: middle;
         }
     </style>
-</head>
 
-<body>
 
-	<%@ include file="/WEB-INF/views/include/header.jsp" %>
 
-    <div class="container">
+<%@ include file="/WEB-INF/views/include/header.jsp" %>
+
+    <div class="container" id="wrapper">
         <h4>조력자 신청자 상세 정보 조회</h4>
         <table class="table table-bordered">
             <tbody>
@@ -49,8 +36,8 @@
                     <td>${assistant.helper_phone_tel}</td>
                 </tr>
                 <tr>
-                    <th>조력자유형</th>
-                    <td>${assistant.small}</td>
+                    <th>개인/기관</th>
+                    <td>${assistant.helper_cateogry_select}</td>
                     <th>직업</th>
                     <td>${assistant.helper_job}</td>
                 </tr>
@@ -65,7 +52,9 @@
                     <td>${assistant.helper_address2}</td>
                     <th>첨부파일</th>
                     <td>
-                        <a href="">경력증명서.pdf</a>
+                    	<a href="<c:url value="/admin/fileDownload?fileId=${assistant.hepler_edu_file_id}" />">학력파일</a>
+                        <a href="<c:url value="/admin/fileDownload?fileId=${assistant.hepler_career_file_id}" />">경력파일</a>
+                        <a href="<c:url value="/admin/fileDownload?fileId=${assistant.hepler_license_file_id}" />">자격증파일</a>
                     </td>
                 </tr>
                 <tr>
@@ -317,8 +306,8 @@
 
         <div class="text-center">
             <button type="button" id="btn-apply-save" class="btn btn-primary" style="margin:0.5em">저장</button>
-            <button type="button" id="btn-apply-delete" class="btn btn-danger" style="margin:0.5em">삭제</button>
-            <button type="button" class="btn btn-default" style="margin:0.5em">목록</button>
+<!--             <button type="button" id="btn-apply-delete" class="btn btn-danger" style="margin:0.5em">삭제</button> -->
+            <button type="button" class="btn btn-default btn_list_go" style="margin:0.5em">목록</button>
         </div>
         
         <input type="hidden" id="account_type" value="${login.type}">
@@ -363,8 +352,8 @@
 		$('#btn-modify').click(function() {
 			// const helperId = $("assistant_id").val(); <- 이거 히든으로 땡겨올 것
 			const assistantId = Number($("#assistant_id").val());
-			const evalName = Number($("#helper_name").val());	
-			const ssnNumber = Number($("#helper_ssn_number").val());
+			const evalName = $("#helper_name").val();	
+			const ssnNumber = $("#helper_ssn_number").val();
 			const totalCareerScore = Number($("input[name=totalCareer]:checked").val()); // 통산경력 라디오버튼의 체크된 값 얻어오기
 			const innerCareer = Number($("input[name=innerCareer]:checked").val());
 			const officeLocation = Number($("input[name=officeLocation]:checked").val());
@@ -444,16 +433,12 @@
 					alert('신청 정보 저장 실패');
 				}
 			});
-			
-			alert('저장버튼 누른거 테스트');
+	
 		});
 		
-		$('#btn-apply-delete').click(function() {
-			alert('삭제버튼 누른거 테스트');
-		});
+	
+		
+		
 		
 	});
 </script>
-</body>
-
-</html>

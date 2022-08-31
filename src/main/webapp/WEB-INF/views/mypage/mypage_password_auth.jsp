@@ -5,8 +5,8 @@
 
 <%@ include file="/WEB-INF/views/include/header.jsp"%>
 
-<section>
-	<div class="container-fluid">
+
+	<div class="container-fluid" id="wrapper">
 		<div class="row text-center">
 			<%-- <div class="col-md-2">
 				<div class="panel panel-info">
@@ -53,7 +53,7 @@
 			</div>
 		</div>
 	</div>
-</section>
+
 
 <%@ include file="/WEB-INF/views/include/footer.jsp" %> 
 

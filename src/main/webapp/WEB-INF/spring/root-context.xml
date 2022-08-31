@@ -48,6 +48,7 @@
 	<mybatis-spring:scan base-package="com.assistance.trial.oneboard.mapper"/>
 	<mybatis-spring:scan base-package="com.assistance.trial.eval.mapper"/>
  	<mybatis-spring:scan base-package="com.assistance.trial.form.mapper"/>
+ 	<mybatis-spring:scan base-package="com.assistance.trial.file.mapper"/>
    
    
    

@@ -9,7 +9,7 @@
 <link href="${pageContext.request.contextPath }/resources/css/choiCss.css" rel="stylesheet">
 
 
-<div class="container-fluid">
+<div class="container-fluid" id="wrapper">
 
 	<div class="row">
 
@@ -45,8 +45,8 @@
 					</tr>
 					
 					<tr>
-						<th>상세 주소</th>
-							<td>${mypageDetail.helper_address2}</td>
+						<th>주소</th>
+							<td>${mypageDetail.helper_address1} ${mypageDetail.helper_address2}</td>
 						<th>평정기준표</th>	
 							<td>
 								<button type="button" class="btn btn-info" data-toggle="modal"	data-target="#myModal">평정기준표 조회</button>

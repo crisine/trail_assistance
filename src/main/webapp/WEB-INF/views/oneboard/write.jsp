@@ -10,13 +10,13 @@
 
 
 
-</head>
-<body>
+
 	<%@ include file="/WEB-INF/views/include/header.jsp"%>
-	<section>
 
 
-		<div class="container-fluid">
+
+		<div class="container-fluid" id="wrapper">
+			<div class="row">
 
 			<div class="col-md-2" id="menu-nav">
 				<div class="panel panel-info">
@@ -36,7 +36,6 @@
 				</div>
 
 			</div>
-			<div class="row">
 
 
 				<div class="board-hon">
@@ -71,11 +70,11 @@
 											<td class="t-title">문의 제목 *</td>
 
 											<td><input type="text" class="form-control input-sm"
-												name="one_title"></td>
+												id="title" name="one_title"></td>
 										</tr>
 
 										<tr>
-											<td class="t-title">문의 종류1 *</td>
+											<td class="t-title">문의 종류*</td>
 
 											<td><select class=" form-control input-sm sel"
 												name="one_cate_one">
@@ -92,16 +91,13 @@
 										<tr>
 											<td class="t-title">문의 내용 *</td>
 											<td><textarea class="form-control" rows="10"
-													name="one_content" style="resize: none;"></textarea></td>
+												id="content"name="one_content" style="resize: none;"></textarea></td>
 										</tr>
 
-										<tr>
-											<td class="t-title">파일 첨부 *</td>
-											<td><input type="file" class="gallery-file"
-												name="one_file" multiple /></td>
-										</tr>
+							
 									</tbody>
 								</table>
+							</form>
 
 
 
@@ -110,11 +106,11 @@
 									<button class="btn" id="listBtn">목록</button>
 								</div>
 
-							</form>
 
 						</div>
 					</div>
 				</div>
+		<div class="col-md-2"></div>
 			</div>
 		</div>
 
@@ -122,21 +118,28 @@
 
 
 
-		<div class="col-md-2"></div>
-
-	</section>
 
 	<script>
  	$(function(){
  		$('#registBtn').click(function(){
- 			if($('input[name=one_title]').val() === ''){
+ 			if($('#title').val() === ''){
  				alert('제목은 필수 항목입니다.');
- 				$('input[name=one_title]').focus();
+ 				$('#title').focus();
  				return;
- 			} else if($('textarea[name=one_content]').val() ===''){
+ 			} else if($('#content').val() ===''){
  				alert('내용은 필수 항목입니다.');
- 				$('textarea[name=one_content]').focus();
+ 				$('#content').focus();
  				return;
+ 			} else if(($('#content').val()).length > 1001){
+ 				alert('내용의 크기는 1-1000자 이내 입니다.');
+ 				$('#content').focus();
+ 				return;	
+ 			
+ 			}else if(($('#title').val()).length > 51){
+					alert('제목 글자 수 제한은  50입니다 !!.');
+					$('#title').focus();
+					return;	
+ 			
  			}else{
  				document.registForm.submit();
  			}

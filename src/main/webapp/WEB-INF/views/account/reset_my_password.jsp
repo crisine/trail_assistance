@@ -18,7 +18,7 @@
     </style>
 
 <%@ include file="/WEB-INF/views/include/header.jsp" %>
-    <div class="container">
+    <div class="container" id="wrapper">
         <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
             <div class="panel panel-info">
                 <div class="panel-heading">

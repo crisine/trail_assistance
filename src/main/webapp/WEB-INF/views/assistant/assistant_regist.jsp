@@ -14,13 +14,7 @@
 	vertical-align: middle;
 }
 
-/* 푸터 스타일 추가 22-08-29 */
-.footer {
-  left: 0;
-  bottom: 0;
-  right:0;
-  width: 100%;
-}
+
 
 .footer-bs {
     background-color: #333;
@@ -79,7 +73,7 @@ footer li a {
 	<%@ include file="../include/header.jsp"%>
 
 		<!--     text-center 적용하면 col크기의 중간에 텍스트 작성-->
-		<div class="container-fluid">
+		<div class="container-fluid" id="wrapper">
 			<div class="row">
 
 				<!--왼쪽 aside공간 -->
@@ -365,7 +359,6 @@ footer li a {
 
 
 
-<div class="footer">
     <footer class="footer-bs">
         <div class="row">
         	<div class="col-md-3 footer-brand animated fadeInLeft">
@@ -413,7 +406,7 @@ footer li a {
             </div>
         </div>
     </footer>
-</div>
+
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
@@ -606,7 +599,7 @@ $(function() {
 			alert('조력자 소분야를 다시 설정하세요');
 			return
 		} */
-	/* 	console.log(chk1);
+ 	/* 	console.log(chk1);
 		console.log(chk2);
 		console.log(chk3);
 		console.log(chk4);
@@ -624,7 +617,7 @@ $(function() {
 			$('form').submit();
 		} else {
 			alert('모든 양식을 정확하게 입력하였는지 확인해 주십시오.');
-		} */
+		}  */
 
 });
 });

@@ -23,7 +23,9 @@ import com.assistance.trial.assistant.service.IAssistantRegistService;
 import com.assistance.trial.command.AccountVO;
 import com.assistance.trial.command.AssistantRegistVO;
 import com.assistance.trial.command.EvalVO;
+import com.assistance.trial.command.FileVO;
 import com.assistance.trial.eval.service.IEvalService;
+import com.assistance.trial.file.service.IFileService;
 
 @Controller
 @RequestMapping("/assistant")
@@ -46,25 +48,31 @@ public class AssistanceRegistController {
    @Autowired
    private IArticleBoardService articleservice;
 
+   
+   
+   // 성민호 0831 수정
+   @Autowired
+   private IFileService fileService;
+   
+   
+   
    //공고 명 변수
    private String contents;
    
-   private int select;
+   private String select;
    
-   private String file1;
-   private String file2;
-   private String file3;
+
 
    //0830 최필규 수정
    //0825 나경민 수정
    ///조력자 공고 게시판 내용 가져오는 화면 
    @GetMapping("/articlelist")
-   public String articlelist(Model model) {
+   public String articlelist(Model model,HttpSession session) {
 
       System.out.println("select : " + select);
       
       //개인/기관시 각각 해당되는 리스트 가져오기
-      if(select == 1) {
+      if(select == "개인") {
          model.addAttribute("assistantarticle", articleservice.getSelectUserList());
          System.out.println(model);
          return "assistant/assistant_article_list";
@@ -78,7 +86,7 @@ public class AssistanceRegistController {
    
    
    @PostMapping("/articlelist")
-   public String articlelist(HttpServletRequest request) {
+   public String articlelist(HttpServletRequest request,HttpSession session) {
       contents = request.getParameter("arti_article_title");
       return "redirect:/assistant/regist";
    }
@@ -137,9 +145,7 @@ public class AssistanceRegistController {
       //assistant 테이블의 기본키를 가져와서  셋팅하고 update 할때 사용 
       vo.setAssistant_id(nums);
       vo.setHelper_apply_status("접수");
-      vo.setHepler_edu_file(file1);
-      vo.setHepler_career_file(file2);
-      vo.setHepler_license_file(file3);
+
       
       assistantservice.update(vo);
       
@@ -164,7 +170,7 @@ public class AssistanceRegistController {
       public String userSelect(Model model,HttpSession session) {
    	   System.out.println((AccountVO)session.getAttribute("login"));
 
-         select = 1;
+         select = "개인";
          
          model.addAttribute("select", select);
          
@@ -177,188 +183,275 @@ public class AssistanceRegistController {
       @GetMapping("/comSelect")
       public String comSelect(Model model,HttpSession session) {
    	   System.out.println((AccountVO)session.getAttribute("login"));
-         select = 2;
+         select = "기관";
          model.addAttribute("select", select);
          
          System.out.println(model);
          return"redirect:/assistant/articlelist";
       }
     //0830 최필규 추가(파일 업로드)
-  	//helper_edu_file 파일 업로드
-  	@PostMapping("/upload1")
-  	@ResponseBody
-  	public String upload1(MultipartFile file) {
-  		System.out.println("num->assistant_id : " + nums);
+    	//helper_edu_file 파일 업로드
+    	@PostMapping("/upload1")
+    	@ResponseBody
+    	public String upload1(MultipartFile file) {
+    		System.out.println("num->assistant_id : " + nums);
+    		
+    		//파일 업로드 hepler_edu_file
+    		//날짜별로 폴더를 생성해서 파일을 관리
+    		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+    		Date date = new Date();
+    		String fileloca = sdf.format(date);
 
-  		//파일 업로드 hepler_edu_file
-  		//날짜별로 폴더를 생성해서 파일을 관리
-  		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-  		Date date = new Date();
-  		String fileloca = sdf.format(date);
+    		//저장할 폴더 경로
+    		String uploadPath = "C:\\upload\\" + fileloca;
 
-  		//저장할 폴더 경로
-  		String uploadPath = "C:\\upload\\" + fileloca;
+    		File folder = new File(uploadPath);
+    		if(!folder.exists()) {
+    			folder.mkdirs(); //폴더가 존재하지 않는다면 생성하라.
+    		}
 
-  		File folder = new File(uploadPath);
-  		if(!folder.exists()) {
-  			folder.mkdirs(); //폴더가 존재하지 않는다면 생성하라.
-  		}
+    		//원본 파일명.
+    		String fileRealName = file.getOriginalFilename();
 
-  		//원본 파일명.
-  		String fileRealName = file.getOriginalFilename();
+    		//파일명을 고유한 랜덤 문자로 생성.
+    		UUID uuid = UUID.randomUUID();
+    		String uuids = uuid.toString().replaceAll("-", "");
 
-  		//파일명을 고유한 랜덤 문자로 생성.
-  		UUID uuid = UUID.randomUUID();
-  		String uuids = uuid.toString().replaceAll("-", "");
+    		//확장자를 추출합니다.
+    		String fileExtension = fileRealName.substring(fileRealName.indexOf("."), fileRealName.length());
 
-  		//확장자를 추출합니다.
-  		String fileExtension = fileRealName.substring(fileRealName.indexOf("."), fileRealName.length());
+    		System.out.println("저장할 폴더 경로: " + uploadPath);
+    		System.out.println("실제 파일명: " + fileRealName);
+    		System.out.println("폴더명: " + fileloca);
+    		System.out.println("확장자: " + fileExtension);
+    		System.out.println("고유랜덤문자: " + uuids);
 
-  		System.out.println("저장할 폴더 경로: " + uploadPath);
-  		System.out.println("실제 파일명: " + fileRealName);
-  		System.out.println("폴더명: " + fileloca);
-  		System.out.println("확장자: " + fileExtension);
-  		System.out.println("고유랜덤문자: " + uuids);
+    		String fileName = uuids + fileExtension;
+    		System.out.println("변경해서 저장할 파일명: " + fileName);
 
-  		String fileName = uuids + fileExtension;
-  		System.out.println("변경해서 저장할 파일명: " + fileName);
+    		//업로드한 파일을 서버 컴퓨터 내의 지정한 경로에 실제로 저장.
+    		File saveFile = new File(uploadPath + "\\" + fileName);
+    		try {
+    			file.transferTo(saveFile);
+    		} catch (Exception e) {
+    			e.printStackTrace();
+    		}
+    		
+    	// 성민호 20220831 추가
+    		nums = assistantservice.getAll().getAssistant_id();	// 여기선 안 얻어와져서 넣었습니다
+    		FileVO vo = new FileVO();
+    		
+    		vo.setFileSaveName(fileName);
+    		vo.setFileOriginalName(fileRealName);
+    		vo.setFilePath(uploadPath); // 이거 문제생길 수 있으니 잘 살필 것
+    		
+    		System.out.println("파일 넣기 전에 검사 : " + vo);
 
-  		//업로드한 파일을 서버 컴퓨터 내의 지정한 경로에 실제로 저장.
-  		File saveFile = new File(uploadPath + "\\" + fileName);
-  		try {
-  			file.transferTo(saveFile);
-  		} catch (Exception e) {
-  			e.printStackTrace();
-  		}
+    		fileService.insertFile(vo);
+    		
+    		vo = fileService.selectOneBySaveName(fileName);
+    		
+    		System.out.println("넣고난 후의 파일 얻어와지는지 검사 : " + vo);
+    		
+    		AssistantRegistVO assistantVO = assistantservice.selectOne(nums);
+    		assistantVO.setHepler_edu_file_id(vo.getFileId());
+    		
+    		System.out.println("조력자 번호 기준으로 얻어와지는지 검사 : " + assistantVO);
+    		System.out.println("조력자 파일 id 번호 저장되었는지? : " + assistantVO.getHepler_career_file_id());
+    		
+    		/*
+    		 * 그리고 이제 바뀐 assistantVO 내용을 업데이트 해줄 것. fileId는 커밋이 안 되었으므로.
+    		 */
+    		
+    		System.out.println("해당 assistant의 edu 파일 아이디 업뎃 전 : " + assistantVO);
+    		assistantservice.updateEduFileId(assistantVO);
+    		System.out.println("해당 assistant의 edu 파일 아이디 업뎃 후 : " + assistantVO);
+    		// 성민호 22-08-31 추가작성 종료
 
-  		//DB에 insert 작업을 실행.
-  		//DB에 저장할 이름 설정
-  		String saveFileName = uploadPath + "\\" + fileName;
-  		System.out.println(" 첫번 째 파일  파일 전체 위치 "+saveFileName);
-  		file1=saveFileName;
-		/* assistantservice.upload1(saveFileName); */
+    		//DB에 insert 작업을 실행.
+    		//DB에 저장할 이름 설정
+    		String saveFileName = uploadPath + "\\" + fileName;
 
-  		return "success";
-  	}
+    		assistantservice.upload1(saveFileName);
 
-  	//0830 최필규 추가(파일 업로드)
-  	//파일 업로드 hepler_career_file
-  	@PostMapping("/upload2")
-  	@ResponseBody
-  	public String upload2(MultipartFile file) {
-  		System.out.println("num->assistant_id : " + nums);
+    		return "success";
+    	}
 
-  		//파일 업로드 hepler_edu_file
-  		//날짜별로 폴더를 생성해서 파일을 관리
-  		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-  		Date date = new Date();
-  		String fileloca = sdf.format(date);
+    	//0830 최필규 추가(파일 업로드)
+    	//파일 업로드 hepler_career_file
+    	@PostMapping("/upload2")
+    	@ResponseBody
+    	public String upload2(MultipartFile file) {
+    		System.out.println("num->assistant_id : " + nums);
 
-  		//저장할 폴더 경로
-  		String uploadPath = "C:\\upload\\" + fileloca;
+    		//파일 업로드 hepler_edu_file
+    		//날짜별로 폴더를 생성해서 파일을 관리
+    		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+    		Date date = new Date();
+    		String fileloca = sdf.format(date);
 
-  		File folder = new File(uploadPath);
-  		if(!folder.exists()) {
-  			folder.mkdirs(); //폴더가 존재하지 않는다면 생성하라.
-  		}
+    		//저장할 폴더 경로
+    		String uploadPath = "C:\\upload\\" + fileloca;
 
-  		//원본 파일명.
-  		String fileRealName = file.getOriginalFilename();
+    		File folder = new File(uploadPath);
+    		if(!folder.exists()) {
+    			folder.mkdirs(); //폴더가 존재하지 않는다면 생성하라.
+    		}
 
-  		//파일명을 고유한 랜덤 문자로 생성.
-  		UUID uuid = UUID.randomUUID();
-  		String uuids = uuid.toString().replaceAll("-", "");
+    		//원본 파일명.
+    		String fileRealName = file.getOriginalFilename();
 
-  		//확장자를 추출합니다.
-  		String fileExtension = fileRealName.substring(fileRealName.indexOf("."), fileRealName.length());
+    		//파일명을 고유한 랜덤 문자로 생성.
+    		UUID uuid = UUID.randomUUID();
+    		String uuids = uuid.toString().replaceAll("-", "");
 
-  		System.out.println("저장할 폴더 경로: " + uploadPath);
-  		System.out.println("실제 파일명: " + fileRealName);
-  		System.out.println("폴더명: " + fileloca);
-  		System.out.println("확장자: " + fileExtension);
-  		System.out.println("고유랜덤문자: " + uuids);
+    		//확장자를 추출합니다.
+    		String fileExtension = fileRealName.substring(fileRealName.indexOf("."), fileRealName.length());
 
-  		String fileName = uuids + fileExtension;
-  		System.out.println("변경해서 저장할 파일명: " + fileName);
+    		System.out.println("저장할 폴더 경로: " + uploadPath);
+    		System.out.println("실제 파일명: " + fileRealName);
+    		System.out.println("폴더명: " + fileloca);
+    		System.out.println("확장자: " + fileExtension);
+    		System.out.println("고유랜덤문자: " + uuids);
 
-  		//업로드한 파일을 서버 컴퓨터 내의 지정한 경로에 실제로 저장.
-  		File saveFile = new File(uploadPath + "\\" + fileName);
-  		try {
-  			file.transferTo(saveFile);
-  		} catch (Exception e) {
-  			e.printStackTrace();
-  		}
+    		String fileName = uuids + fileExtension;
+    		System.out.println("변경해서 저장할 파일명: " + fileName);
 
-  		//DB에 insert 작업을 실행.
-  		//DB에 저장할 이름 설정
-  		String saveFileName = uploadPath + "\\" + fileName;
-  		System.out.println(" 두번쨰 파일  파일 전체 위치 "+saveFileName);
-  		file2=saveFileName;
-		/* assistantservice.upload2(saveFileName); */
+    		//업로드한 파일을 서버 컴퓨터 내의 지정한 경로에 실제로 저장.
+    		File saveFile = new File(uploadPath + "\\" + fileName);
+    		try {
+    			file.transferTo(saveFile);
+    		} catch (Exception e) {
+    			e.printStackTrace();
+    		}
+    		
+    		// 성민호 20220831 추가
+    		nums = assistantservice.getAll().getAssistant_id();	// 여기선 안 얻어와져서 넣었습니다
+    		FileVO vo = new FileVO();
+    		
+    		vo.setFileSaveName(fileName);
+    		vo.setFileOriginalName(fileRealName);
+    		vo.setFilePath(uploadPath); // 이거 문제생길 수 있으니 잘 살필 것
+    		
+    		System.out.println("파일 넣기 전에 검사 : " + vo);
 
-  		return "success";
-  	}
+    		fileService.insertFile(vo);
+    		
+    		vo = fileService.selectOneBySaveName(fileName);
+    		
+    		System.out.println("넣고난 후의 파일 얻어와지는지 검사 : " + vo);
+    		
+    		AssistantRegistVO assistantVO = assistantservice.selectOne(nums);
+    		assistantVO.setHepler_career_file_id(vo.getFileId());
+    		
+    		System.out.println("조력자 번호 기준으로 얻어와지는지 검사 : " + assistantVO);
+    		System.out.println("조력자 파일 id 번호 저장되었는지? : " + assistantVO.getHepler_career_file_id());
+    		
+    		/*
+    		 * 그리고 이제 바뀐 assistantVO 내용을 업데이트 해줄 것. fileId는 커밋이 안 되었으므로.
+    		 */
+    		
+    		System.out.println("해당 assistant의 career 파일 아이디 업뎃 전 : " + assistantVO);
+    		assistantservice.updateCareerFileId(assistantVO);
+    		System.out.println("해당 assistant의 career 파일 아이디 업뎃 후 : " + assistantVO);
+    		// 성민호 22-08-31 추가작성 종료
+    		
+    		//DB에 insert 작업을 실행.
+    		//DB에 저장할 이름 설정
+    		String saveFileName = uploadPath + "\\" + fileName;
 
-  	//0830 최필규 추가(파일 업로드)
-  	//파일 업로드 hepler_license_file
-  	@PostMapping("/upload3")
-  	@ResponseBody
-  	public String upload3(MultipartFile file) {
-  		System.out.println("num->assistant_id : " + nums);
+    		assistantservice.upload2(saveFileName);
 
-  		//파일 업로드 hepler_edu_file
-  		//날짜별로 폴더를 생성해서 파일을 관리
-  		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-  		Date date = new Date();
-  		String fileloca = sdf.format(date);
+    		return "success";
+    	}
 
-  		//저장할 폴더 경로
-  		String uploadPath = "C:\\upload\\" + fileloca;
+    	//0830 최필규 추가(파일 업로드)
+    	//파일 업로드 hepler_license_file
+    	@PostMapping("/upload3")
+    	@ResponseBody
+    	public String upload3(MultipartFile file) {
+    		System.out.println("num->assistant_id : " + nums);
 
-  		File folder = new File(uploadPath);
-  		if(!folder.exists()) {
-  			folder.mkdirs(); //폴더가 존재하지 않는다면 생성하라.
-  		}
+    		//파일 업로드 hepler_edu_file
+    		//날짜별로 폴더를 생성해서 파일을 관리
+    		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+    		Date date = new Date();
+    		String fileloca = sdf.format(date);
 
-  		//원본 파일명.
-  		String fileRealName = file.getOriginalFilename();
+    		//저장할 폴더 경로
+    		String uploadPath = "C:\\upload\\" + fileloca;
 
-  		//파일명을 고유한 랜덤 문자로 생성.
-  		UUID uuid = UUID.randomUUID();
-  		String uuids = uuid.toString().replaceAll("-", "");
+    		File folder = new File(uploadPath);
+    		if(!folder.exists()) {
+    			folder.mkdirs(); //폴더가 존재하지 않는다면 생성하라.
+    		}
 
-  		//확장자를 추출합니다.
-  		String fileExtension = fileRealName.substring(fileRealName.indexOf("."), fileRealName.length());
+    		//원본 파일명.
+    		String fileRealName = file.getOriginalFilename();
 
-  		System.out.println("저장할 폴더 경로: " + uploadPath);
-  		System.out.println("실제 파일명: " + fileRealName);
-  		System.out.println("폴더명: " + fileloca);
-  		System.out.println("확장자: " + fileExtension);
-  		System.out.println("고유랜덤문자: " + uuids);
+    		//파일명을 고유한 랜덤 문자로 생성.
+    		UUID uuid = UUID.randomUUID();
+    		String uuids = uuid.toString().replaceAll("-", "");
 
-  		String fileName = uuids + fileExtension;
-  		System.out.println("변경해서 저장할 파일명: " + fileName);
+    		//확장자를 추출합니다.
+    		String fileExtension = fileRealName.substring(fileRealName.indexOf("."), fileRealName.length());
 
-  		//업로드한 파일을 서버 컴퓨터 내의 지정한 경로에 실제로 저장.
-  		File saveFile = new File(uploadPath + "\\" + fileName);
-  		try {
-  			file.transferTo(saveFile);
-  		} catch (Exception e) {
-  			e.printStackTrace();
-  		}
+    		System.out.println("저장할 폴더 경로: " + uploadPath);
+    		System.out.println("실제 파일명: " + fileRealName);
+    		System.out.println("폴더명: " + fileloca);
+    		System.out.println("확장자: " + fileExtension);
+    		System.out.println("고유랜덤문자: " + uuids);
 
-  		//DB에 insert 작업을 실행.
-  		//DB에 저장할 이름 설정
-  		String saveFileName = uploadPath + "\\" + fileName;
-  		System.out.println("세번째 파일 전체 위치 "+saveFileName);
-  		file3=saveFileName;
-		/* assistantservice.upload3(saveFileName); */
+    		String fileName = uuids + fileExtension;
+    		System.out.println("변경해서 저장할 파일명: " + fileName);
 
-  		return "success";
-  	}
+    		//업로드한 파일을 서버 컴퓨터 내의 지정한 경로에 실제로 저장.
+    		File saveFile = new File(uploadPath + "\\" + fileName);
+    		try {
+    			file.transferTo(saveFile);
+    		} catch (Exception e) {
+    			e.printStackTrace();
+    		}
+    		
+    	// 성민호 20220831 추가
+    		nums = assistantservice.getAll().getAssistant_id();	// 여기선 안 얻어와져서 넣었습니다
+    		FileVO vo = new FileVO();
+    		
+    		vo.setFileSaveName(fileName);
+    		vo.setFileOriginalName(fileRealName);
+    		vo.setFilePath(uploadPath); // 이거 문제생길 수 있으니 잘 살필 것
+    		
+    		System.out.println("파일 넣기 전에 검사 : " + vo);
 
+    		fileService.insertFile(vo);
+    		
+    		vo = fileService.selectOneBySaveName(fileName);
+    		
+    		System.out.println("넣고난 후의 파일 얻어와지는지 검사 : " + vo);
+    		
+    		AssistantRegistVO assistantVO = assistantservice.selectOne(nums);
+    		assistantVO.setHepler_license_file_id(vo.getFileId());
+    		
+    		System.out.println("조력자 번호 기준으로 얻어와지는지 검사 : " + assistantVO);
+    		System.out.println("조력자 파일 id 번호 저장되었는지? : " + assistantVO.getHepler_career_file_id());
+    		
+    		/*
+    		 * 그리고 이제 바뀐 assistantVO 내용을 업데이트 해줄 것. fileId는 커밋이 안 되었으므로.
+    		 */
+    		
+    		System.out.println("해당 assistant의 license 파일 아이디 업뎃 전 : " + assistantVO);
+    		assistantservice.updateLicenseFileId(assistantVO);
+    		System.out.println("해당 assistant의 license 파일 아이디 업뎃 후 : " + assistantVO);
+    		// 성민호 22-08-31 추가작성 종료
 
+    		//DB에 insert 작업을 실행.
+    		//DB에 저장할 이름 설정
+    		String saveFileName = uploadPath + "\\" + fileName;
 
+    		assistantservice.upload3(saveFileName);
+
+    		return "success";
+    	}
 
 
 }

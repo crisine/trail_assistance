@@ -11,12 +11,15 @@
  
     <link href="${pageContext.request.contextPath }/resources/css1/list_style.css" rel="stylesheet">
  
-</head>
-<body>
+
 
 
 <%@ include file="../include/header.jsp" %>
 
+  
+        <div class="container-fluid" id="wrapper">
+            <div class="row">
+            	
     
 <div class="col-md-2" id="menu-nav">
             	 <div class="panel panel-info">
@@ -35,10 +38,6 @@
             </div>
             	
             	</div>
-  
-        <div class="container-fluid">
-            <div class="row">
-            	
    
             	
                 <div class="col-md-8 board-table">
@@ -56,7 +55,6 @@
                                 <option value="one_content" ${pc.paging.condition == 'one_content' ? 'selected' : '' }>내용</option>
                             	<option value="one_writer" ${pc.paging.condition == 'one_writer' ? 'selected' : '' }> 작성자 </option>
                             	<option value="one_cate_one" ${pc.paging.condition == 'one_cate_one' ? 'selected' : '' }> 문의 유형 1 </option>
-                            	<option value="one_cate_two" ${pc.paging.condition == 'one_cate_two' ? 'selected' : '' }> 문의 유형 2 </option>
                             </select>
                         </div>
                         

@@ -6,7 +6,7 @@
 
 
 
-<div class="container-fluid">
+<div class="container-fluid" id="wrapper">
 	<div class="row">
 		<!-- 왼쪽 -->
 		<div class="col-md-2"></div>

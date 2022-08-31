@@ -13,13 +13,13 @@
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/include/header.jsp"%>
-	<section>
 
 
-		<div class="container-fluid">
 
-			<div class="col-md-2"></div>
+		<div class="container-fluid" id="wrapper">
+
 			<div class="row">
+			<div class="col-md-2"></div>
 
 
 				<div class="board-hon">
@@ -49,7 +49,7 @@
 
 												<th class="title">제목</th>
 												<td colspan="6"><input class="form-control input-sm"
-													name="article_title"></td>
+													id="title" name="article_title"></td>
 
 											</tr>
 
@@ -63,18 +63,14 @@
 
 												</select></td>
 												<th class="c-date">공고 모집 시작일	</th>
-												<td colspan="2"><input type="datetime-local" class="form-control" name="start_date"></td>
+												<td colspan="2"><input type="datetime-local" class="form-control" name="start_date" id="currentDatetime"></td>
 												<th>공고 모집 마감일	</th>
-												<td><input type="datetime-local" class="form-control" name="expired_date"></td>
+												<td><input type="datetime-local" class="form-control" id="currentLocaltime" name="expired_date"></td>
 
 
 											</tr>
 
-											<tr>
-												<th class="t-file">첨부 파일</th>
-
-												<td colspan="8"><a href="#" class="">파일목록</a></td>
-											</tr>
+											
 
 
 										</tbody>
@@ -83,7 +79,7 @@
 											<th>내용</th>
 											<td class="t-text" colspan="9"><textarea
 													name="article_content" class="form-control" rows="15"
-													cols="150" style="resize: none;"></textarea></td>
+													id="content" cols="150" style="resize: none;"></textarea></td>
 										</tr>
 
 
@@ -104,44 +100,50 @@
 
 					</div>
 				</div>
+		<div class="col-md-2"></div>
 			</div>
 		</div>
 
 
-		<div class="col-md-2"></div>
-	</section>
-	<script>
+
+<script>
  	$(function(){
  		$('#registBtn').click(function(){
- 			if($('input[name=article_title]').val() === ''){
+ 			if($('#title').val() === ''){
  				alert('제목은 필수 항목입니다.');
- 				$('input[name=article_title]').focus();
+ 				$('#title').focus();
  				return;
  				
  				//내용은 필수 항목		
- 			} else if($('textarea[name=aritcle_content]').val() ===''){
+ 			} else if($('#content').val() ===''){
  				alert('내용은 필수 항목입니다.');
- 				$('textarea[name=article_content]').focus();
+ 				$('#content').focus();
  				return;
+ 			
  			} else if(($('#content').val()).length > 1001){
  				alert('내용의 크기는 1-1000자 이내 입니다.');
  				$('#content').focus();
  				return;	
+ 				
+ 				
+ 	 			//글자수제한 50
+ 	 			}else if(($('#title').val()).length > 51){
+ 						alert('제목 글자 수 제한은  50입니다 !!.');
+ 						$('#title').focus();
+ 						return;		
  			
- 			}else if(($('#title').val()).length > 51){
-					alert('제목 글자 수 제한은  50입니다 !!.');
-					$('#title').focus();
-					return;	
-				
  			}else if($('#currentDatetime').val() ===''){
- 			alert('등록일을 적어주세요')
- 			$('#currentDatetime').focus();
- 			return;
+ 	 			alert('등록일을 적어주세요')
+ 	 			$('#currentDatetime').focus();
+ 	 			return;
+ 	 			
  			}else if($('#currentLocaltime').val() ===''){
- 	 			alert('마감일을 적어주세요')
- 	 			$('#currentLocaltime').focus();
- 	 			return;		
- 					
+ 	 	 			alert('마감일을 적어주세요')
+ 	 	 			$('#currentLocaltime').focus();
+ 	 	 			return;			
+ 				
+ 				//내용은 필수 항목		
+			
  				
  			} else{
  				document.registForm.submit();

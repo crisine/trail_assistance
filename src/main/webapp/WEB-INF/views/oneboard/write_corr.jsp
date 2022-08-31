@@ -10,14 +10,13 @@
 
 
 
-</head>
-<body>
 	<%@ include file="/WEB-INF/views/include/header.jsp"%>
-	<section>
 
 
-		<div class="container-fluid">
 
+		<div class="container-fluid" id="wrapper">
+
+			<div class="row">
 			<div class="col-md-2" id="menu-nav">
 				<div class="panel panel-info">
 					<div class="panel-heading">
@@ -36,7 +35,6 @@
 				</div>
 
 			</div>
-			<div class="row">
 
 
 				<div class="board-hon">
@@ -81,12 +79,12 @@
 
 								<div class="form-group">
 									<label>문의 제목</label> <input class="form-control"
-										name='one_title' value="${one.one_title}">
+										name='one_title' id="title" value="${one.one_title}">
 								</div>
 
 								<div class="form-group">
 									<label>문의 내용</label>
-									<textarea class="form-control" style="resize: none;" rows="10" name='one_content'>${one.one_content}</textarea>
+									<textarea class="form-control" id="content" style="resize: none;" rows="10" name='one_content'>${one.one_content}</textarea>
 								</div>
 
 
@@ -95,10 +93,7 @@
 										value="${one.one_id}" readonly>
 								</div>
 
-								<div class="form-group">
-									<label>파일</label> <input type="file" class="gallery-file"
-										name="one_file" multiple />
-								</div>
+						
 
 								<div class="text-right ">
 									<button type="button" id="listBtn" class="btn btn-dark">목록</button>
@@ -117,6 +112,7 @@
 
 				</div>
 
+		<div class="col-md-2"></div>
 			</div>
 
 		</div>
@@ -124,9 +120,6 @@
 
 
 
-		<div class="col-md-2"></div>
-
-	</section>
 
 	<script>
  	
@@ -137,14 +130,24 @@
  		});
  	
  	$('#updateBtn').click(function() {
-		if($('input[name=one_title]').val() === ''){
+		if($('#title').val() === ''){
 			alert('제목은 필수 항목입니다.');
-			$('input[name=one_title]').focus();
+			$('#title').focus();
 			return;
-		}else if($('textarea[name=one_content]').val()=== ''){
+		}else if($('#content').val()=== ''){
 			alert('내용은 필수 항목 입니다.');
-			$('textarea[name=one_content]').focus();
+			$('#content').focus();
 			return;
+		} else if(($('#content').val()).length > 1001){
+				alert('내용의 크기는 1-1000자 이내 입니다.');
+				$('#content').focus();
+				return;	
+			
+			}else if(($('#title').val()).length > 51){
+				alert('제목 글자 수 제한은  50입니다 !!.');
+				$('#title').focus();
+				return;	
+		
 		}else{
 			document.updateForm.submit();
 		}

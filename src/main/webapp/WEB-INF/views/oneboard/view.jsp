@@ -8,14 +8,15 @@
 
 	
 
-</head>
-<body>
+
 <%@ include file="/WEB-INF/views/include/header.jsp" %>
-	<section>
+
      
 
-        <div class="container-fluid">
+        <div class="container-fluid" id="wrapper">
         
+            <div class="row">
+            
         <div class="col-md-2" id="menu-nav">
             	 <div class="panel panel-info">
                 <div class="panel-heading">
@@ -32,8 +33,6 @@
             </div>
             	
             	</div>
-            <div class="row">
-            
             
             	<div class="board-hon">
                 <div class="col-md-8 board-table">
@@ -83,32 +82,14 @@
                                        </tr>
                                           
       
-                                           <tr>
-                                            <td class="t-title">문의 종류2 *</td>
-                                                <td>
-                                             
-                                              <select class=" form-control input-sm sel" name="one_cate_two" readonly>
-                                                	<option >문의 유형 5</option>
-                                                	<option >문의 유형 6</option>
-                                                	<option >문의 유형 7</option>
-                                                	<option >문의 유형 8</option>
-                                                	<option >문의 유형 9</option>
-                                               
-                                                </select>
-                                           	</td>
-                                           </tr>                                            
+                                                                                   
                                             <tr>
                                                 <td class="t-title">문의 내용 *</td>
                                                 <td>
                                                 <textarea class="form-control" rows="10" name="one_content"  readonly></textarea></td>
                                             </tr>
                                             
-                                             <tr>
-                                                <td class="t-title">파일 첨부  </td>
-                                                <td> 
-                                                    <input type="file" class="gallery-file" name="one_file" multiple  readonly/>
-                                               </td>
-                                            </tr>
+                                
                                         </tbody>
                                     </table>
                          
@@ -130,6 +111,7 @@
                                 </div>
                                 </div>
                                 </div>
+                <div class="col-md-2"></div>
                                 </div>
                     </div>
      
@@ -137,9 +119,8 @@
        
    
                                  
-                <div class="col-md-2"></div>
                 
-             </section>
+           
              
   
        <script>

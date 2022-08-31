@@ -23,10 +23,10 @@
 	<%@ include file="../include/header.jsp"%>
 
 
-	<div class="col-md-2"></div>
 
-	<div class="container-fluid">
+	<div class="container-fluid" id="wrapper">
 		<div class="row">
+	<div class="col-md-2"></div>
 
 
 

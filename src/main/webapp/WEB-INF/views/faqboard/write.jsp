@@ -10,14 +10,13 @@
 
 
 
-</head>
-<body>
 	<%@ include file="/WEB-INF/views/include/header.jsp"%>
-	<section>
 
 
-		<div class="container-fluid">
 
+		<div class="container-fluid" id="wrapper">
+
+			<div class="row">
 			<div class="col-md-2" id="menu-nav">
 				<div class="panel panel-info">
 					<div class="panel-heading">
@@ -36,7 +35,6 @@
 				</div>
 
 			</div>
-			<div class="row">
 
 
 				<div class="board-hon">
@@ -67,7 +65,7 @@
 											<td class="t-title">자주묻는 제목</td>
 
 											<td><input type="text" class="form-control input-sm"
-												name="faq_title"></td>
+												id="title" name="faq_title"></td>
 										</tr>
 
 
@@ -88,13 +86,14 @@
 										<tr>
 											<td class="t-title">문의 내용 *</td>
 											<td><textarea class="form-control" rows="10" class="form-control"
-													name="faq_content" style="resize: none;"></textarea></td>
+												 id="content"	name="faq_content" style="resize: none;"></textarea></td>
 										</tr>
 
 
 									</tbody>
 									
 								</table>
+							</form>
 
 
 
@@ -103,11 +102,11 @@
 									<button class="btn" id="listBtn">목록</button>
 								</div>
 
-							</form>
 
 						</div>
 					</div>
 				</div>
+		<div class="col-md-2"></div>
 			</div>
 		</div>
 
@@ -115,21 +114,30 @@
 
 
 
-		<div class="col-md-2"></div>
 
-	</section>
+
 
 	<script>
 		$(function() {
 			$('#registBtn').click(function() {
-				if ($('input[name=faq_title]').val() === '') {
+				if ($('#title').val() === '') {
 					alert('제목은 필수 항목입니다.');
-					$('input[name=faq_title]').focus();
+					$('#title').focus();
 					return;
-				} else if ($('textarea[name=faq_content]').val() === '') {
+				} else if ($('#content').val() === '') {
 					alert('내용은 필수 항목입니다.');
-					$('textarea[name=faq_content]').focus();
+					$('#content').focus();
 					return;
+				} else if(($('#content').val()).length > 1001){
+	 				alert('내용의 크기는 1-1000자 이내 입니다.');
+	 				$('#content').focus();
+	 				return;	
+	 			
+	 			}else if(($('#title').val()).length > 51){
+						alert('제목 글자 수 제한은  50입니다 !!.');
+						$('#title').focus();
+						return;	
+				
 				} else {
 					document.registForm.submit();
 				}

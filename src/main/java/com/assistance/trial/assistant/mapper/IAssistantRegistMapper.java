@@ -22,4 +22,9 @@ public interface IAssistantRegistMapper {
 
 	//0830 최필규 추가
 	void upload3(String saveFileName);
+	
+	// 0831 성민호 추가
+	void updateEduFileId(AssistantRegistVO vo);
+	void updateCareerFileId(AssistantRegistVO vo);
+	void updateLicenseFileId(AssistantRegistVO vo);
 }

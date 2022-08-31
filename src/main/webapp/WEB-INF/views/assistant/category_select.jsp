@@ -36,7 +36,7 @@
 </style>
 
 
-<div class="container-fluid join-wrap text-center">
+<div class="container-fluid join-wrap text-center" id="wrapper">
 	<h1 class="join-title">조력자 유형 선택</h1>
 	<span>본인이 해당하는 조력자 유형을 선택해 주세요.</span> <br> <br>
 

@@ -3,15 +3,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
-<!DOCTYPE html>
-
-<html>
-<head>
-
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>view</title>
 
 
 
@@ -22,11 +13,15 @@
 
 
 
-</head>
-<body>
 
 
 	<%@ include file="../include/header.jsp"%>
+
+
+	<div class="container-fluid" id="wrapper">
+
+		<div class="row">
+
 
 
 	<div class="col-md-2" id="menu-nav">
@@ -47,12 +42,6 @@
 		</div>
 
 	</div>
-
-	<div class="container-fluid">
-
-		<div class="row">
-
-
 
 			<div class="col-md-8 board-table">
 
@@ -88,11 +77,7 @@
 								value="${faq.faq_id}" readonly>
 						</div>
 
-						<div class="form-group">
-							<label>파일</label> <input type="file" class="gallery-file"
-								name="faq_file" multiple />
-
-						</div>
+				
 
 						<div class="form-group">
 							<label>내용</label>
@@ -121,12 +106,12 @@
 
 			</div>
 
+	<div class="col-md-2"></div>
 		</div>
 	</div>
 
 
 
-	<div class="col-md-2"></div>
 
 	<script>
 	const msg = '${msg}';

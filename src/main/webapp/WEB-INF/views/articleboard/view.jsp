@@ -29,11 +29,11 @@
 	<%@ include file="../include/header.jsp"%>
 
 
-	<div class="col-md-2"></div>
 
-	<div class="container-fluid">
+	<div class="container-fluid" id="wrapper">
 
 		<div class="row">
+		<div class="col-md-2"></div>
 
 
 
@@ -75,11 +75,7 @@
 
 									</tr>
 
-									<tr>
-										<th class="t-file">첨부 파일</th>
-
-										<td colspan="8"><a href="#" class="">파일목록</a></td>
-									</tr>
+							
 
 
 								</tbody>
@@ -135,12 +131,12 @@
 
 			</div>
 
+	<div class="col-md-2"></div>
 		</div>
 	</div>
 
 
 
-	<div class="col-md-2"></div>
 
 	<script>
 		const msg = '${msg}';

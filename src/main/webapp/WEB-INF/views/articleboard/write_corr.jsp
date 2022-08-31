@@ -13,13 +13,13 @@
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/include/header.jsp"%>
-	<section>
 
 
-		<div class="container-fluid">
 
-			<div class="col-md-2"></div>
+		<div class="container-fluid" id="wrapper">
+
 			<div class="row">
+			<div class="col-md-2"></div>
 
 
 				<div class="board-hon">
@@ -58,18 +58,14 @@
 
 												</select></td>
 												<th class="c-date">공고 모집 시작일</th>
-												<td colspan="2"><input type="datetime-local" class="form-control" name="start_date" value="${article.article_start_date}"></td>
+												<td colspan="2"><input type="datetime-local" class="form-control" name="start_date" id="currentDatetime" value="${article.article_start_date}"></td>
 												<th>공고 모집 마감일</th>
-												<td><input type="datetime-local" class="form-control" name="expired_date" value="${article.article_expired_date}"></td>
+												<td><input type="datetime-local" class="form-control" name="expired_date" id="currentLocaltime" value="${article.article_expired_date}"></td>
 
 
 											</tr>
 
-											<tr>
-												<th class="t-file">첨부 파일</th>
-
-												<td colspan="8"><a href="#" class="">파일목록</a></td>
-											</tr>
+									
 
 
 										</tbody>
@@ -103,13 +99,13 @@
 
 				</div>
 
+		<div class="col-md-2"></div>
 			</div>
 
 		</div>
 
 
-		<div class="col-md-2"></div>
-	</section>
+
 
 	<script>
 		$(function() {
@@ -127,6 +123,25 @@
 					alert('내용은 필수 항목 입니다.');
 					$('textarea[name=article_content]').focus();
 					return;
+				} else if(($('#content').val()).length > 1001){
+	 				alert('내용의 크기는 1-1000자 이내 입니다.');
+	 				$('#content').focus();
+	 				return;	
+	 			
+	 			}else if(($('#title').val()).length > 51){
+						alert('제목 글자 수 제한은  50입니다 !!.');
+						$('#title').focus();
+						return;	
+					
+	 			}else if($('#currentDatetime').val() ===''){
+	 			alert('등록일을 적어주세요')
+	 			$('#currentDatetime').focus();
+	 			return;
+	 			}else if($('#currentLocaltime').val() ===''){
+	 	 			alert('마감일을 적어주세요')
+	 	 			$('#currentLocaltime').focus();
+	 	 			return;		
+				
 				} else {
 					document.updateForm.submit();
 				}

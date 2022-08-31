@@ -21,7 +21,7 @@
 
 
 
-<div class="container-fluid">
+<div class="container-fluid" id="wrapper">
    <div class="row">
 
       <!-- 왼쪽 사이드 -->

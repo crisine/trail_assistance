@@ -8,7 +8,7 @@
 
 	<!--아이디 비밀번호 데이터 검증 추후 추가 예정-->
 
-	<div class="container-fluid">
+	<div class="container-fluid" id="wrapper">
 		<div class="row">
 			<div class="col-md-4"></div>
 			<div class="col-md-4 user-join-form">

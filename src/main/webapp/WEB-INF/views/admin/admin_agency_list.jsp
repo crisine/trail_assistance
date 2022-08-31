@@ -8,7 +8,7 @@
 <link href="${pageContext.request.contextPath }/resources/css/choiCss.css" rel="stylesheet">
 
 
-<div class="container-fluid">
+<div class="container-fluid" id="wrapper">
 	<div class="row">
 		<div class="col-md-2">
 			<div class="panel panel-info">

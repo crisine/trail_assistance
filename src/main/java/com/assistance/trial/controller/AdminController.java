@@ -1,5 +1,12 @@
 package com.assistance.trial.controller;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.OutputStream;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -21,11 +29,13 @@ import com.assistance.trial.command.AccountVO;
 import com.assistance.trial.command.AgencyVO;
 import com.assistance.trial.command.AssistantRegistVO;
 import com.assistance.trial.command.EvalVO;
+import com.assistance.trial.command.FileVO;
 import com.assistance.trial.command.FormVO;
 import com.assistance.trial.eval.service.IEvalService;
-import com.assistance.trial.form.service.IFormService;
+import com.assistance.trial.file.service.IFileService;
 import com.assistance.trial.util.PageCreator;
 import com.assistance.trial.util.PageVO;
+
 
 
 @Controller
@@ -44,6 +54,10 @@ public class AdminController {
 
 	@Autowired
 	private IAccountService accountService;
+	
+	//0831
+	@Autowired
+	private IFileService fileService;
 
 	/* ---------------------------------------------------최필규 작성 시작--------------------------------------------------- */
 
@@ -187,6 +201,51 @@ public class AdminController {
 
 
 	// 성민호 작성 시작
+	
+	// 2022-08-31 성민호 다운로드 기능 추가
+		@GetMapping("/fileDownload")
+		public void fileDownload(@RequestParam("fileId") int id,
+								HttpServletResponse response) {
+			
+			System.out.println("파일다운로드 메서드 초입 체크");
+			System.out.println("fileId 체크 : " + id);
+			
+			FileVO vo = fileService.selectOne(id);
+			
+			System.out.println("다운로드하려는 파일VO 체크 : " + vo);
+			
+		    Map<String, Object> fileMap = new HashMap<String, Object>();
+			
+		    fileMap.put("filePath", vo.getFilePath() + File.separator);
+		    fileMap.put("fileSaveName", vo.getFileSaveName());
+		    fileMap.put("fileOriginalName", vo.getFileOriginalName());
+		    
+		    System.out.println("파일다운로드 메서드 반환 직전 체크");
+			
+		    try {
+	        	String path = vo.getFilePath() + "/" + vo.getFileSaveName();
+	        	
+	        	File file = new File(path);
+	        	response.setHeader("Content-Disposition", "attachment;filename=" + file.getName()); // 다운로드 되거나 로컬에 저장되는 용도로 쓰이는지를 알려주는 헤더
+	        	
+	        	FileInputStream fileInputStream = new FileInputStream(path); // 파일 읽어오기 
+	        	OutputStream out = response.getOutputStream();
+	        	
+	        	int read = 0;
+	                byte[] buffer = new byte[1024];
+	                while ((read = fileInputStream.read(buffer)) != -1) { // 1024바이트씩 계속 읽으면서 outputStream에 저장, -1이 나오면 더이상 읽을 파일이 없음
+	                    out.write(buffer, 0, read);
+	                }
+	                
+	        } catch (Exception e) {
+	        	e.printStackTrace();
+	        }
+		    
+		    //return new ModelAndView("fileDownload", "fileMap", fileMap);
+		}
+	
+	
+	
 	// 조력자 '관리' 누를 시, 상세보기로 이동
 	// 2022-08-26 성민호 추가
 	@GetMapping("/manage_helper_apply/{assistant_id}")

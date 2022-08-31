@@ -9,7 +9,7 @@
 <link href="${pageContext.request.contextPath }/resources/css/choiCss.css" rel="stylesheet">
 
 
-<div class="container-fluid">
+<div class="container-fluid" id="wrapper">
 	<div class="row">
 		<div class="col-md-2">
 		
@@ -34,6 +34,7 @@
 				<thead class="#">
 					<tr>
 						<th>번호</th>
+						<th>개인/기관</th>
 						<th>신청 조력자 유형</th>
 						<th>접수 상태</th>
 				<!-- 		<th>심사 현황</th> -->
@@ -47,7 +48,8 @@
 					<c:forEach var="list" items="${assisList}">
 						<tr>
 							<td>${list.assistant_id}</td>
-							<td>${list.small}</td>
+							<td>${list.helper_cateogry_select}</td>
+							<td>${list.helepr_articleboard}</td>
 							<td>${list.helper_apply_status}</td>
 							<%-- <td>${list.helper_status}</td> --%>
 							<td>${list.helper_office_name}</td>

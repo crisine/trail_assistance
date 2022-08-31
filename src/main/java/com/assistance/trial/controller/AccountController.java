@@ -207,7 +207,7 @@ public class AccountController {
 	
 	@GetMapping("/logout") 
 	public ModelAndView logout(HttpSession session) {
-		session.removeAttribute("login");
+		session.invalidate();
 		
 		return new ModelAndView("redirect:/");
 	}

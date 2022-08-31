@@ -13,8 +13,6 @@
 	href="${pageContext.request.contextPath }/resources/css1/list_style.css"
 	rel="stylesheet">
 
-</head>
-<body>
 
 
 
@@ -22,6 +20,10 @@
 
 	<%@ include file="../include/header.jsp"%>
 
+
+
+	<div class="container-fluid" id="wrapper">
+		<div class="row">
 
 	<div class="col-md-2" id="menu-nav">
 		<div class="panel panel-info">
@@ -41,10 +43,6 @@
 		</div>
 
 	</div>
-
-	<div class="container-fluid">
-		<div class="row">
-
 
 
 			<div class="col-md-8 board-table">

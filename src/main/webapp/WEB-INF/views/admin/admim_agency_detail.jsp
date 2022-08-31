@@ -9,8 +9,8 @@
 <link href="${pageContext.request.contextPath }/resources/css/choiCss.css" rel="stylesheet">
 
 
-<section>
-	<div class="container-fluid">
+
+	<div class="container-fluid" id="wrapper">
 		<div class="row">
 			<div class="col-md-2">
 				<div class="panel panel-info">
@@ -75,7 +75,7 @@
 		</div>
 		<input type="hidden" id="account_type" value="${login.type}">
 	</div>
-</section>
+
 
 
 <%@ include file="/WEB-INF/views/include/footer.jsp" %> 

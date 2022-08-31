@@ -9,14 +9,12 @@
 
 
 
-
-</head>
-<body>
 	<%@ include file="/WEB-INF/views/include/header.jsp"%>
-	<section>
 
 
 		<div class="container-fluid">
+
+			<div class="row">
 
 			<div class="col-md-2" id="menu-nav">
 				<div class="panel panel-info">
@@ -36,8 +34,6 @@
 				</div>
 
 			</div>
-			<div class="row">
-
 
 				<div class="board-hon">
 					<div class="col-md-8 board-table">
@@ -67,7 +63,7 @@
 									</c:if>
 								</c:if>
 								<div class="form-group">
-									<label>제목</label> <input class="form-control" name='faq_title'
+									<label>제목</label> <input class="form-control" id="title" name='faq_title'
 										value="${faq.faq_title}">
 
 								</div>
@@ -90,18 +86,14 @@
 
 
 
-								<div class="form-group">
-									<label>파일</label> <input type="file" class="gallery-file"
-										name="faq_file" multiple />
-
-								</div>
+							
 
 
 
 
 								<div class="form-group">
 									<label>내용</label>
-									<textarea class="form-control" rows="10" name='faq_content' style="resize: none;">${faq.faq_content}</textarea>
+									<textarea class="form-control"  id="content" rows="10" name='faq_content' style="resize: none;">${faq.faq_content}</textarea>
 
 								</div>
 
@@ -121,6 +113,7 @@
 
 				</div>
 
+		<div class="col-md-2"></div>
 			</div>
 
 		</div>
@@ -128,9 +121,7 @@
 
 
 
-		<div class="col-md-2"></div>
 
-	</section>
 
 	<script>
  	
@@ -149,6 +140,16 @@
 			alert('내용은 필수 항목 입니다.');
 			$('textarea[name=faq_content]').focus();
 			return;
+		} else if(($('#content').val()).length > 1001){
+				alert('내용의 크기는 1-1000자 이내 입니다.');
+				$('#content').focus();
+				return;	
+			
+			}else if(($('#title').val()).length > 51){
+				alert('제목 글자 수 제한은  50입니다 !!.');
+				$('#title').focus();
+				return;	
+		
 		}else{
 			document.updateForm.submit();
 		}

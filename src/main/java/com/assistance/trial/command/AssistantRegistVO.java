@@ -46,22 +46,25 @@ helper_education VARCHAR2(100),
 helper_school_admission VARCHAR2(100),
 helper_school_graduate VARCHAR2(100),  
 final_edu VARCHAR2(100),               
-hepler_edu_file VARCHAR2(100),                            
+hepler_edu_file VARCHAR2(100),
+hepler_edu_file_id NUMBER(10), 
 helper_career_name VARCHAR2(100),      
 helper_career_period VARCHAR2(100), 
 helper_career_wrok VARCHAR2(100),     
 helper_career_department VARCHAR2(100),
 helper_career_position VARCHAR2(100),  
-hepler_career_file VARCHAR2(100),                         
+hepler_career_file VARCHAR2(100),
+hepler_career_file_id NUMBER(10),
 helper_license_name VARCHAR2(100),     
 helper_license_agency VARCHAR2(100),  
 helper_license_num VARCHAR2(100),      
 helper_license_date VARCHAR2(100),     
 hepler_license_file VARCHAR2(100),
+hepler_license_file_id NUMBER(10),
 helper_regdate DATE DEFAULT sysdate,
-helper_apply_status VARCHAR2(100), --신청 접수 상태(접수, 승인, 보완 ,부적격)
-helper_status VARCHAR2(100) DEFAULT '　',  -- 평정기준표 밑에 있는 코멘트 저장
- helper_cateogry_select NUMBER(1) NOT NULl); //개인 1 / 기관2 구분 하는 값 
+helper_apply_status VARCHAR2(100), 
+helper_status VARCHAR2(100) DEFAULT '　',
+helper_cateogry_select VARCHAR2(100) NOT NULL);
  
  
 CREATE SEQUENCE assistant_seq
@@ -73,8 +76,8 @@ CREATE SEQUENCE assistant_seq
     NOCYCLE;
 
 
-SELECT * FROM assistant;
-DROP TABLE assistant;
+SELECT * FROM assistant ;
+DROP TABLE assistant CASCADE CONSTRAINTS;
 DROP SEQUENCE assistant_seq;  
  */
 
@@ -130,6 +133,7 @@ public class AssistantRegistVO {
 	private String helper_school_graduate; 
 	private String final_edu; 
 	private String hepler_edu_file;
+	private int hepler_edu_file_id;		// 22-08-31 성민호 추가
 
 	private String helper_career_name; 
 	private String helper_career_period;
@@ -137,18 +141,20 @@ public class AssistantRegistVO {
 	private String helper_career_department;
 	private String helper_career_position;
 	private String hepler_career_file;
+	private int hepler_career_file_id;	// 22-08-31 성민호 추가
 
 	private String helper_license_name;
 	private String helper_license_agency;
 	private String helper_license_num;
 	private String helper_license_date;
 	private String hepler_license_file;
+	private int hepler_license_file_id;	// 22-08-31 성민호 추가
 
 	private Timestamp helper_regdate;
 	private String helper_apply_status; //신청자 상태 ( 접수  ,심사중  ,승인 , 보완)
 	private String helper_status; // 평정기준표 밑에 있는 코멘트 저장 용 
 	
 	
-	private int helper_cateogry_select; //조력자 신청 맨 처음시 개인/기관 구분하는데 그 값을 저장하는 컬럼 
+	private String helper_cateogry_select; //조력자 신청 맨 처음시 개인/기관 구분하는데 그 값을 저장하는 컬럼 
 
 }
