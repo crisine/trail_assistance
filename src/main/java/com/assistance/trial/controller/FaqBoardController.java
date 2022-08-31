@@ -1,5 +1,7 @@
 package com.assistance.trial.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,7 +26,7 @@ public class FaqBoardController {
 	
 	//목록 화면
 	@GetMapping("/list")
-	public void list(PageVO vo, Model model) {
+	public void list(PageVO vo, Model model,HttpSession session) {
 		
 		System.out.println(vo);
 		
@@ -43,12 +45,12 @@ public class FaqBoardController {
 	
 	//글쓰기 화면 처리 
 	@GetMapping("/write")
-	public void write() {}
+	public void write(HttpSession session) {}
 	
 	
 	//글 등록 처리
 	@PostMapping("/registForm")
-	public String registForm(FaqBoardVO vo, RedirectAttributes ra) {
+	public String registForm(FaqBoardVO vo, RedirectAttributes ra,HttpSession session) {
 		
 		service.regist(vo);
 		ra.addFlashAttribute("msg", "정상 등록 처리되었습니다.");
@@ -60,7 +62,7 @@ public class FaqBoardController {
 	@GetMapping("/view/{faq_id}")
 	public String getContent(@PathVariable int faq_id, 
 			@ModelAttribute("p") PageVO vo,
-			Model model) {
+			Model model,HttpSession session) {
 	
 		model.addAttribute("faq", service.getContent(faq_id));
 		
@@ -71,13 +73,13 @@ public class FaqBoardController {
 	
 	//글 수정 페이지 이동 처리
 	@GetMapping("/write_corr")
-	public void write_corr(int faq_id, Model model) {
+	public void write_corr(int faq_id, Model model,HttpSession session) {
 	model.addAttribute("faq", service.getContent(faq_id));
 	}
 	
 	//글 수정 처리
 	@PostMapping("/faqUpdate")
-	public String noticeUpdate(FaqBoardVO vo, RedirectAttributes ra) {
+	public String noticeUpdate(FaqBoardVO vo, RedirectAttributes ra,HttpSession session) {
 		service.update(vo);
 		ra.addFlashAttribute("msg", "updateSuccess");
 		return "redirect:/faqboard/view/" + vo.getFaq_id();
@@ -85,7 +87,7 @@ public class FaqBoardController {
 	
 	//글 삭제 처리
 	@PostMapping("/faqDelete")
-	public String noticeDelete(int faq_id, RedirectAttributes ra) {
+	public String noticeDelete(int faq_id, RedirectAttributes ra,HttpSession session) {
 		
 		service.delete(faq_id);
 		

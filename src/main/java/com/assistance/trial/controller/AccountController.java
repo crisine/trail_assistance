@@ -144,6 +144,7 @@ public class AccountController {
 	         if (param.get("password").equals(accVo.getPassword())) {
 	            // 로그인 성공할 경우 세션 정보 생성
 	            session.setAttribute("login", accVo);
+	            
 	            return "loginSuccess";
 	         } else {
 	            System.out.println("프론트측 입력값 : " + param.get("password"));

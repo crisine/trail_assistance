@@ -244,7 +244,7 @@ $(function() {
    });
    
    //사업자 전화번호 체크
-   $('#helper_offic_tel').keyup(function() 
+   $('#helper_offic_tel').keyup(function(){
       if($(this).val() === '') {
          $(this).css('background', 'pink');
          $('#officeTelCheck').html('<b style="font-size: 10px; color: red">[회사 전화번호는 필수입니다!]</b>');

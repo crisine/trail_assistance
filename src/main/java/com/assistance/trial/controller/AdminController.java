@@ -49,7 +49,7 @@ public class AdminController {
 
 	//조력자 신청기관 관리 조회
 	@GetMapping("/admin_agency_list")
-	public String comAdminList(PageVO vo, Model model) {
+	public String comAdminList(PageVO vo, Model model,HttpSession session) {
 		System.out.println(vo);
 
 		PageCreator pc = new PageCreator();
@@ -66,7 +66,7 @@ public class AdminController {
 	//조력자 신청기관 관리 상세 조회
 	@GetMapping("/comAdminDetail/{comNo}")
 	public String comAdminDetail(@PathVariable int comNo, Model model, 
-			@ModelAttribute("p") PageVO vo) {
+			@ModelAttribute("p") PageVO vo,HttpSession session) {
 
 		System.out.println(comNo);
 
@@ -76,7 +76,7 @@ public class AdminController {
 
 	//기관 등록 화면 이동
 	@GetMapping("/admin_agency_regist")
-	public String com_admin_regist() {
+	public String com_admin_regist(HttpSession session) {
 		return "admin/admin_agency_regist";
 	}
 
@@ -94,7 +94,7 @@ public class AdminController {
 
 	//기관 등록
 	@PostMapping("/comRegist")
-	public String comRegist(AgencyVO vo, RedirectAttributes ra) {
+	public String comRegist(AgencyVO vo, RedirectAttributes ra,HttpSession session) {
 		adminService.comRegist(vo);
 		ra.addFlashAttribute("msg", "기관이 정상적으로 등록되었습니다!");
 		System.out.println("기관 정보 등록되었음을 확인"+vo);
@@ -103,14 +103,14 @@ public class AdminController {
 
 	//기관 수정 화면으로 이동
 	@GetMapping("/comModify")
-	public String comModify(int comNo, Model model, @ModelAttribute("p") PageVO vo) {
+	public String comModify(int comNo, Model model, @ModelAttribute("p") PageVO vo,HttpSession session) {
 		model.addAttribute("comDetail", adminService.getComDetail(comNo));
 		return "admin/admin_agency_update";
 	}
 
 	//기관 정보 수정 처리
 	@PostMapping("/comUpdate")
-	public String comUpdate(AgencyVO vo, RedirectAttributes ra) {
+	public String comUpdate(AgencyVO vo, RedirectAttributes ra,HttpSession session) {
 		adminService.comUpdate(vo);
 
 		ra.addFlashAttribute("updateMsg", "수정이 완료되었습니다.");
@@ -276,7 +276,7 @@ public class AdminController {
 	}
 
 	@GetMapping("/manage_helper_assign")
-	public String manageHelperAssign() {
+	public String manageHelperAssign(HttpSession session) {
 		return "/admin/manage_helper_assign_list";
 	}
 

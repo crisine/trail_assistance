@@ -117,16 +117,39 @@
  				alert('제목은 필수 항목입니다.');
  				$('input[name=article_title]').focus();
  				return;
- 			} else if($('textarea[name=article_content]').val() ===''){
+ 				
+ 				//내용은 필수 항목		
+ 			} else if($('textarea[name=aritcle_content]').val() ===''){
  				alert('내용은 필수 항목입니다.');
  				$('textarea[name=article_content]').focus();
  				return;
- 			}else{
+ 			} else if(($('#content').val()).length > 1001){
+ 				alert('내용의 크기는 1-1000자 이내 입니다.');
+ 				$('#content').focus();
+ 				return;	
+ 			
+ 			}else if(($('#title').val()).length > 51){
+					alert('제목 글자 수 제한은  50입니다 !!.');
+					$('#title').focus();
+					return;	
+				
+ 			}else if($('#currentDatetime').val() ===''){
+ 			alert('등록일을 적어주세요')
+ 			$('#currentDatetime').focus();
+ 			return;
+ 			}else if($('#currentLocaltime').val() ===''){
+ 	 			alert('마감일을 적어주세요')
+ 	 			$('#currentLocaltime').focus();
+ 	 			return;		
+ 					
+ 				
+ 			} else{
  				document.registForm.submit();
  			}
- 			
- 			
  		});
+ 		
+ 		
+ 		
  		$('#listBtn').click(function(){
  			if(confirm('목록으로 돌아가시겠습니까?')){
  				location.href='<c:url value="/articleboard/list" />'	

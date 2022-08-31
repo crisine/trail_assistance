@@ -173,7 +173,10 @@ footer li a {
 						<tbody>
 							<tr>
 								<td>증명 파일</td>
-								<td><input type="file" name="hepler_edu_file"></td>
+								<td>
+									<input type="file" name="hepler_edu_file" id="hepler_edu_file">
+									<button type="button" class="btn-sm" id="helper_edu_fileUpload">등록하기</button>
+								</td>
 							</tr>
 						</tbody>
 					</table>
@@ -208,7 +211,10 @@ footer li a {
 						<tbody>
 							<tr>
 								<td>증명 파일</td>
-								<td><input type="file" name="hepler_career_file"></td>
+								<td>
+									<input type="file" name="hepler_career_file" id="hepler_career_file">
+									<button type="button" class="btn-sm" id="hepler_career_fileUpload">등록하기</button>
+								</td>
 							</tr>
 						</tbody>
 					</table>
@@ -243,7 +249,10 @@ footer li a {
 						<tbody>
 							<tr>
 								<td>증명 파일</td>
-								<td><input type="file" name="hepler_license_file"></td>
+								<td>
+									<input type="file" name="hepler_license_file" id="hepler_license_file">
+									<button type="button" class="btn-sm" id="hepler_license_fileUpload">등록하기</button>
+								</td>
 							</tr>
 						</tbody>
 
@@ -1443,9 +1452,184 @@ $('#modi_helper_license_name').keyup(function(){
             
         });
 
+		////////////////////////////////////////////////////////////////
+		
+		//파일 업로드
+		
+		//helper_edu_file 업로드
+		$('#helper_edu_fileUpload').click(function() {
+			upload1();
+		});
+		
+		//hepler_career_file 업로드
+		$('#hepler_career_fileUpload').click(function() {
+			upload2();
+		});
+		
+		//hepler_license_file 업로드
+		$('#hepler_license_fileUpload').click(function() {
+			upload3();
+		});
 
+		//helper_edu_file 파일 등록 함수
+		function upload1() {
+			//자바스크립트의 파일 확장자 체크 검색.
+			let file1 = $('#hepler_edu_file').val();
+			
+			console.log(file);
+			//.을 제거한 확장자만 얻어낸 후 그것을 소문자로 일괄 변경
+			file1 = file1.slice(file.indexOf('.') + 1).toLowerCase();
+			console.log(file);
+			
+			//ajax 폼 전송의 핵심 FormData 객체.
+			const formData1 = new FormData();
+			const data1 = $('#hepler_edu_file');
+			
+			console.log('폼 데이터: ' + formData1);
+			console.log('data: ' + data1);
+			console.log(data1[0]); //input type="file" 요소를 지목할 때 사용.
+			console.log(data1[0].files); //파일 태그에 담긴 파일 정보를 확인하는 키값.
+			console.log(data1[0].files[0]); //사용자가 등록한 최종 파일 정보
+			
+			/*
+			data[index] -> 파일 업로드 버튼이 여러 개 존재할 경우 요소의 인덱스를 지목해서 가져오는 법.
+			우리는 요소를 id로 취득했기 때문에 하나만 찍히지만, class이름 같은 걸로 지목하면 여러 개가 취득되겠죠?
+			files[index] -> 파일이 여러 개 전송되는 경우, 몇 번째 파일인지를 지목.
+			우리는 multiple 속성을 주지 않았기 때문에 0번 인덱스 밖에 없는 겁니다.
+			*/
+			
+			//FormData 객체에 사용자가 업로드한 파일의 정보가 들어있는 객체를 전달.
+			formData1.append('file', data1[0].files[0]);
+			
+			//비동기 방식으로 파일 업로드 및 게시글 등록을 진행.
+			$.ajax({
+				url: '<c:url value="/assistant/upload1" />',
+				type: 'post',
+				data: formData1, //폼 데이터 객체를 넘깁니다.
+				contentType: false, //ajax 방식에서 파일을 넘길 때는 반드시 false로 처리 -> "multipart/form-data"로 선언됨.
+				processData: false, //폼 데이터를 &변수=값&변수=값... 형식으로 변경되는 것을  막는 요소.
+				success: function(result) {
+					if(result === 'success') {
+						alert('학력 파일 등록 완료!');
+					} else {
+						alert('업로드에 실패했습니다. 관리자에게 문의 해 주세요.');
+					}
+				},
+				error: function(request, status, error) {
+					console.log('code: ' + request + '\n message: ' + request.responseText + "\n" + 'error: ' + error);
+					alert('업로드에 실패했습니다. 관리자에게 문의 해 주세요.');
+				}
+				
+			}); //end ajax
+        	
+		} //upload1 end
+		
 
-
+		//hepler_career_file 파일 등록 함수
+		function upload2() {
+			//자바스크립트의 파일 확장자 체크 검색.
+			let file2 = $('#hepler_career_file').val();
+			
+			console.log(file);
+			//.을 제거한 확장자만 얻어낸 후 그것을 소문자로 일괄 변경
+			file2 = file2.slice(file.indexOf('.') + 1).toLowerCase();
+			console.log(file2);
+			
+			//ajax 폼 전송의 핵심 FormData 객체.
+			const formData2 = new FormData();
+			const data2 = $('#hepler_career_file');
+			
+			console.log('폼 데이터: ' + formData2);
+			console.log('data: ' + data2);
+			console.log(data2[0]); //input type="file" 요소를 지목할 때 사용.
+			console.log(data2[0].files); //파일 태그에 담긴 파일 정보를 확인하는 키값.
+			console.log(data2[0].files[0]); //사용자가 등록한 최종 파일 정보
+			
+			/*
+			data[index] -> 파일 업로드 버튼이 여러 개 존재할 경우 요소의 인덱스를 지목해서 가져오는 법.
+			우리는 요소를 id로 취득했기 때문에 하나만 찍히지만, class이름 같은 걸로 지목하면 여러 개가 취득되겠죠?
+			files[index] -> 파일이 여러 개 전송되는 경우, 몇 번째 파일인지를 지목.
+			우리는 multiple 속성을 주지 않았기 때문에 0번 인덱스 밖에 없는 겁니다.
+			*/
+			
+			//FormData 객체에 사용자가 업로드한 파일의 정보가 들어있는 객체를 전달.
+			formData2.append('file', data2[0].files[0]);
+			
+			//비동기 방식으로 파일 업로드 및 게시글 등록을 진행.
+			$.ajax({
+				url: '<c:url value="/assistant/upload2" />',
+				type: 'post',
+				data: formData2, //폼 데이터 객체를 넘깁니다.
+				contentType: false, //ajax 방식에서 파일을 넘길 때는 반드시 false로 처리 -> "multipart/form-data"로 선언됨.
+				processData: false, //폼 데이터를 &변수=값&변수=값... 형식으로 변경되는 것을  막는 요소.
+				success: function(result) {
+					if(result === 'success') {
+						alert('경력 파일 등록 완료!');
+					} else {
+						alert('업로드에 실패했습니다. 관리자에게 문의 해 주세요.');
+					}
+				},
+				error: function(request, status, error) {
+					console.log('code: ' + request + '\n message: ' + request.responseText + "\n" + 'error: ' + error);
+					alert('업로드에 실패했습니다. 관리자에게 문의 해 주세요.');
+				}
+				
+			}); //end ajax
+        	
+		} //upload2 end
+		
+		//hepler_license_file 파일 등록 함수
+		function upload3() {
+			//자바스크립트의 파일 확장자 체크 검색.
+			let file3 = $('#hepler_license_file').val();
+			
+			console.log(file3);
+			//.을 제거한 확장자만 얻어낸 후 그것을 소문자로 일괄 변경
+			file3 = file3.slice(file.indexOf('.') + 1).toLowerCase();
+			console.log(file3);
+			
+			//ajax 폼 전송의 핵심 FormData 객체.
+			const formData3 = new FormData();
+			const data3 = $('#hepler_license_file');
+			
+			console.log('폼 데이터: ' + formData3);
+			console.log('data: ' + data3);
+			console.log(data3[0]); //input type="file" 요소를 지목할 때 사용.
+			console.log(data3[0].files); //파일 태그에 담긴 파일 정보를 확인하는 키값.
+			console.log(data3[0].files[0]); //사용자가 등록한 최종 파일 정보
+			
+			/*
+			data[index] -> 파일 업로드 버튼이 여러 개 존재할 경우 요소의 인덱스를 지목해서 가져오는 법.
+			우리는 요소를 id로 취득했기 때문에 하나만 찍히지만, class이름 같은 걸로 지목하면 여러 개가 취득되겠죠?
+			files[index] -> 파일이 여러 개 전송되는 경우, 몇 번째 파일인지를 지목.
+			우리는 multiple 속성을 주지 않았기 때문에 0번 인덱스 밖에 없는 겁니다.
+			*/
+			
+			//FormData 객체에 사용자가 업로드한 파일의 정보가 들어있는 객체를 전달.
+			formData3.append('file', data3[0].files[0]);
+			
+			//비동기 방식으로 파일 업로드 및 게시글 등록을 진행.
+			$.ajax({
+				url: '<c:url value="/assistant/upload3" />',
+				type: 'post',
+				data: formData3, //폼 데이터 객체를 넘깁니다.
+				contentType: false, //ajax 방식에서 파일을 넘길 때는 반드시 false로 처리 -> "multipart/form-data"로 선언됨.
+				processData: false, //폼 데이터를 &변수=값&변수=값... 형식으로 변경되는 것을  막는 요소.
+				success: function(result) {
+					if(result === 'success') {
+						alert('자격 면허 파일 등록 완료!');
+					} else {
+						alert('업로드에 실패했습니다. 관리자에게 문의 해 주세요.');
+					}
+				},
+				error: function(request, status, error) {
+					console.log('code: ' + request + '\n message: ' + request.responseText + "\n" + 'error: ' + error);
+					alert('업로드에 실패했습니다. 관리자에게 문의 해 주세요.');
+				}
+				
+			}); //end ajax
+        	
+		} //upload3 end
 
 
 
@@ -1778,8 +1962,7 @@ $('#modi_helper_license_name').keyup(function(){
            
               
             });
-
-
+		
 
 
 

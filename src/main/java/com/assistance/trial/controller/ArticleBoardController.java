@@ -4,6 +4,8 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,7 +31,7 @@ public class ArticleBoardController {
 
 	//목록 화면
 	@GetMapping("/list")
-	public void list(PageVO vo, Model model) {
+	public void list(PageVO vo, Model model,HttpSession session) {
 
 
 		PageCreator pc = new PageCreator();
@@ -39,16 +41,13 @@ public class ArticleBoardController {
 
 		model.addAttribute("articleList", service.getList(vo));
 		model.addAttribute("pc", pc);
-		System.out.println("vo is"+vo);
-		System.out.println(service.getList(vo));
-		System.out.println(service.getList(vo));
 
 	}
 
 
 	//글쓰기 화면 처리 
 	@GetMapping("/write")
-	public void write() {}
+	public void write(HttpSession session) {}
 
 
 	//글 등록 처리
@@ -56,7 +55,7 @@ public class ArticleBoardController {
 	public String registForm(ArticleBoardVO vo,
 			@RequestParam("start_date") String startDate,
 			@RequestParam("expired_date") String expiredDate,
-			RedirectAttributes ra) {
+			RedirectAttributes ra,HttpSession session) {
 
 		System.out.println("변환 전 시작 날짜: " + startDate);
 		System.out.println("변환 전 만료 날짜: " + expiredDate);
@@ -85,7 +84,7 @@ public class ArticleBoardController {
 	@GetMapping("/view/{article_id}")
 	public String getContent(@PathVariable int article_id, 
 			@ModelAttribute("p") PageVO vo,
-			Model model) {
+			Model model,HttpSession session) {
 
 		model.addAttribute("article", service.getContent(article_id));
 
@@ -93,30 +92,37 @@ public class ArticleBoardController {
 
 
 	}
+	//글 수정 페이지 이동 처리
+		@GetMapping("/write_corr")
+		public void write_corr(int article_id, Model model,HttpSession session) {
+		model.addAttribute("article", service.getContent(article_id));
+		}
 
 	//글 수정 처리
 	@PostMapping("/articleUpdate")
 	public String articleUpdate(ArticleBoardVO vo, RedirectAttributes ra,
+			
+			
 			@RequestParam("start_date") String startDate,
-			@RequestParam("expired_date") String expiredDate
+			@RequestParam("expired_date") String expiredDate,HttpSession session
 			) {
 		System.out.println("변환 전 시작 날짜: " + startDate);
 		System.out.println("변환 전 만료 날짜: " + expiredDate);
-
+		
 		String dateTimeStartDate = startDate.replace("T", " ");
 		String dateTimeExpiredDate = expiredDate.replace("T", " ");
-
+		
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 		LocalDateTime startDateTime = LocalDateTime.parse(dateTimeStartDate, formatter);
 		LocalDateTime expiredDateTime = LocalDateTime.parse(dateTimeExpiredDate, formatter);
-
+		
 		vo.setArticle_start_date(Timestamp.valueOf(startDateTime));
 		vo.setArticle_expired_date(Timestamp.valueOf(expiredDateTime));
-
+		
 		System.out.println("변환 후 시작 날짜: " + vo.getArticle_start_date());
 		System.out.println("변환 후 만료 날짜: " + vo.getArticle_expired_date());
-
-
+		
+		
 		service.update(vo);
 		ra.addFlashAttribute("msg", "updateSuccess");
 		return "redirect:/articleboard/view/" + vo.getArticle_id();
@@ -124,7 +130,7 @@ public class ArticleBoardController {
 
 	//글 삭제 처리
 	@PostMapping("/articleDelete")
-	public String articleDelete(int article_id, RedirectAttributes ra) {
+	public String articleDelete(int article_id, RedirectAttributes ra,HttpSession session) {
 
 		service.delete(article_id);
 

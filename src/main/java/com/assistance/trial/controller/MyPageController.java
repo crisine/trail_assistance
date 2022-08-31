@@ -102,7 +102,7 @@ public class MyPageController {
 	//0825 최필규 수정
 	//mypage_assistant_detail  조력자 신청 현황 상세보기 처리
 	@GetMapping("/getApplyDetail/{assistant_id}") 
-	public String getApplyDetail(@PathVariable int assistant_id, Model model) {
+	public String getApplyDetail(@PathVariable int assistant_id, Model model,HttpSession session) {
 
 
 		model.addAttribute("mypageDetail", service.getApplyDetail(assistant_id));
@@ -140,7 +140,7 @@ public class MyPageController {
 	//메인페이지 비밀번호 체크
 	@ResponseBody
 	@PostMapping("/pwCheck")
-	public String pwCheck(@RequestBody AccountVO vo) {
+	public String pwCheck(@RequestBody AccountVO vo,HttpSession session) {
 
 		int result = accountService.pwCheck(vo);
 
@@ -153,7 +153,7 @@ public class MyPageController {
 	//0825 최필규 수정
 	//비밀번호 일치시 마이페이지 이동처리
 	@PostMapping("/pwSuccess")
-	public String pwSuccess() {
+	public String pwSuccess(HttpSession session) {
 
 		return "redirect:/mypage/mypage_assistant_history";
 
@@ -185,7 +185,7 @@ public class MyPageController {
 
 	// 회원 정보 수정
 	@PostMapping("/mypage_update_fin")
-	public String updateInfo(AssistantRegistVO vo, RedirectAttributes ra) {
+	public String updateInfo(AssistantRegistVO vo, RedirectAttributes ra,HttpSession session) {
 		System.out.println("메서드 호출");
 		System.out.println("업데이트 정보 : " + vo);
 		service.updateInfo(vo);

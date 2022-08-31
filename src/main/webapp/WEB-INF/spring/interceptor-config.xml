@@ -15,7 +15,7 @@
 			
 			<!-- 로그인 권한을 체크하는 핸들러 : 로그인 안하고 AssistanceRegistController.java 파일에 있는 url 접속하면 로그인 시킴 -->
 			<mvc:interceptor>
-				<mvc:mapping path="/assistant/*"/>
+				<mvc:mapping path="/assistant/category_select"/>
 				<mvc:mapping path="/admin/*"/>
 				<mvc:mapping path="/mypage/*"/>
 				<ref bean="userAuth"/>

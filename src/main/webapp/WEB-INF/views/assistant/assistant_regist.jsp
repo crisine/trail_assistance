@@ -150,7 +150,7 @@ footer li a {
 								<tr>
 									<td>조력자명</td>
 									<td>
-										<input type="text" name="helper_name" id="helper_name" class="form-control">
+										<input type="text" name="helper_name" id="helper_name" class="form-control" placeholder="홍길동">
 									</td>
 									<td>주민등록번호</td>
 									<td>
@@ -162,11 +162,11 @@ footer li a {
 									<td>휴대전화번호</td>
 									<td>
 										<input type="text" name="helper_phone_tel" id="helper_phone_tel"
-											class="form-control">
+											class="form-control" placeholder="010-1234-1234">
 									</td>
 									<td>전화번호</td>
 									<td>
-										<input type="text" name="helper_home_tel" id="helper_home_tel" class="form-control">
+										<input type="text" name="helper_home_tel" id="helper_home_tel" class="form-control" placeholder="02-1234-1234">
 									</td>
 								</tr>
 	
@@ -174,11 +174,11 @@ footer li a {
 									<td>이메일</td>
 									<td>
 										<input type="text" name="helper_email_address" id="helper_email_address"
-											class="form-control">
+											class="form-control" placeholder="abcdef@abcdef.com">
 									</td>
 									<td>직업</td>
 									<td>
-										<input type="text" name="helper_job" id="helper_job" class="form-control">
+										<input type="text" name="helper_job" id="helper_job" class="form-control" placeholder="의사">
 									</td>
 								</tr>
 	
@@ -222,12 +222,12 @@ footer li a {
 									<td>사무소명</td>
 									<td>
 										<input type="text" name="helper_office_name" id="helper_office_name"
-											class="form-control">
+											class="form-control" placeholder="법무법인">
 									</td>
 									<td>사업자등록번호</td>
 									<td>
 										<input type="text" name="helper_bussiness_reg_num" id="helper_bussiness_reg_num"
-											class="form-control">
+											class="form-control" placeholder="123-12-12345">
 									</td>
 								</tr>
 	
@@ -235,12 +235,12 @@ footer li a {
 									<td>사무소전화번호</td>
 									<td>
 										<input type="text" name="helper_offic_tel" id="helper_offic_tel"
-											class="form-control">
+											class="form-control" placeholder="1234-1234" >
 									</td>
 									<td>사무소팩스번호</td>
 									<td>
 										<input type="text" name="helper_offic_fax_tel" id="helper_offic_fax_tel"
-											class="form-control">
+											class="form-control" placeholder="123-1234-4567">
 									</td>
 								</tr>
 								<tr>
@@ -420,7 +420,7 @@ footer li a {
 <script>
 
 //주소 찾기 API 사용
-	function goPopup(){
+function goPopup(){
 	//주소 찾기 버튼을 누르면 절대경로로 팝업창을 오픈
 	var pop = window.open("${pageContext.request.contextPath}/resources/popup/jusoPopup.jsp","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
 
@@ -600,13 +600,13 @@ $(function() {
 
 
  	$('.submit_btn').click(function() {
-	
+ 		$('form').submit();
 
 	/* 	if ($('#mid').val() !== 'sel' && $('#small').val() === 'sel') {
 			alert('조력자 소분야를 다시 설정하세요');
 			return
 		} */
-		console.log(chk1);
+	/* 	console.log(chk1);
 		console.log(chk2);
 		console.log(chk3);
 		console.log(chk4);
@@ -624,7 +624,7 @@ $(function() {
 			$('form').submit();
 		} else {
 			alert('모든 양식을 정확하게 입력하였는지 확인해 주십시오.');
-		}
+		} */
 
 });
 });
