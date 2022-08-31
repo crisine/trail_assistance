@@ -72,4 +72,15 @@ public class ArticleBoardService implements IArticleBoardService {
 	public List<ArticleBoardVO> articleMainList() {
 		return mapper.articleMainList();
 	}
+	//0830 최필규 추가
+	@Override
+	public List<ArticleBoardVO> getSelectUserList() {
+		return mapper.getSelectUserList();
+	}
+
+	//0830 최필규 추가
+	@Override
+	public List<ArticleBoardVO> getSelectAgencyList() {
+		return mapper.getSelectAgencyList();
+	}
 }

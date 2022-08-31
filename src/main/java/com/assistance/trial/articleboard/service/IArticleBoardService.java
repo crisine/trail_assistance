@@ -30,4 +30,8 @@ public interface IArticleBoardService {
 	//0828 최필규 추가
 	//메인 리스트
 	List<ArticleBoardVO> articleMainList();
+	List<ArticleBoardVO> getSelectUserList();
+
+	//0830 최필규 추가
+	List<ArticleBoardVO> getSelectAgencyList();
 }
