@@ -9,7 +9,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>header</title>
+<title>재판조력자 온라인신청</title>
 <script src="https://kit.fontawesome.com/89b715172c.js"
 	crossorigin="anonymous">
 	
@@ -48,21 +48,22 @@ header li {
 	margin-left: 0px;
 	display: inline;
 }
-#wrapper{
-  height: auto;
-  min-height: 100%;
-  padding-bottom: 100px;
+
+#wrapper {
+	height: auto;
+	min-height: 100%;
+	padding-bottom: 100px;
 }
 
 .footer {
-  height: 400px;
-  position : relative;
-  transform : translateY(-100%);
-  margin-bottom: 0;
+	height: 400px;
+	position: relative;
+	transform: translateY(-100%);
+	margin-bottom: 0;
 }
 
 html, body {
-    height: 100%
+	height: 100%
 }
 </style>
 </head>
@@ -74,7 +75,7 @@ html, body {
 			<div class="container-fluid">
 				<div class="navbar-header">
 					<i class="fa-solid fa-scale-balanced"><a
-						href="${pageContext.request.contextPath}"
+						href="<c:url value='/'/>"
 						style="color: white; text-decoration: none;">온라인감정신청</a></i>
 				</div>
 				<c:choose>
@@ -83,7 +84,8 @@ html, body {
 
 
 						<ul class="nav navbar-nav navbar-right">
-							<li><a href="<c:url value="/account/user_join" />"><span
+							<li><a
+								href="<c:url value="/account/user_join" />"><span
 									class="glyphicon glyphicon-user"></span> 회원가입</a></li>
 							<li><a href="<c:url value="/account/login" />"><span
 									class="glyphicon glyphicon-log-in"></span> 로그인</a></li>

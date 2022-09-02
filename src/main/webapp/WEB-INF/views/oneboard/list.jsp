@@ -54,7 +54,7 @@
                                 <option value="one_title" ${pc.paging.condition == 'one_title' ? 'selected' : '' }>제목</option>
                                 <option value="one_content" ${pc.paging.condition == 'one_content' ? 'selected' : '' }>내용</option>
                             	<option value="one_writer" ${pc.paging.condition == 'one_writer' ? 'selected' : '' }> 작성자 </option>
-                            	<option value="one_cate_one" ${pc.paging.condition == 'one_cate_one' ? 'selected' : '' }> 문의 유형 1 </option>
+                            	<option value="one_cate_one" ${pc.paging.condition == 'one_cate_one' ? 'selected' : '' }> 문의 유형  </option>
                             </select>
                         </div>
                         
@@ -62,9 +62,7 @@
                       </form>
                         <table class="table table-bordered table-hover">
                             <thead>
-                            <c:if test="${login.type==1}">
-                                <th >번호</th>
-                                </c:if>
+                            
                                 <th>문의 유형</th>
                                 
                                 <th>작성자</th>
@@ -77,25 +75,29 @@
                             </thead>
                             <tbody>
                             <c:forEach var ="vo" items="${oneList}">
+                             <c:if test="${login.type == 1 || login.account == vo.one_writer}">
                                 <tr>
-                                <c:if test="${login.type == 1}">
-                                    <td>${vo.one_id}</td>
-                                    </c:if>
+                               
+                                    
+                                  
                                     
                                      <td>${vo.one_cate_one}</td>
 
                                      <td>${vo.one_writer}</td>
+                                    
                                     <td>
                                     <a href="<c:url value='/oneboard/view/${vo.one_id}${pc.makeURI(pc.paging.pageNum)}' />"> ${vo.one_title}</a>
                                     &nbsp;&nbsp;&nbsp;
                                    
                                     </td>
                                   
-                                    <c:if test="${login.type == 1}">
+                                    <c:if test="${login.type == 1 }">
                                      <td><fmt:formatDate value="${vo.one_regdate}" pattern="yyyy-MM-dd HH:mm" /></td>
                                      <td><fmt:formatDate value="${vo.one_updatedate}" pattern="yyyy-MM-dd HH:mm" /></td>
-								</c:if>
+                                        </c:if>
+								
                                 </tr>
+                                </c:if>
                              </c:forEach>
                             </tbody>
                         </table>
@@ -117,10 +119,9 @@
                                 </c:if>
                             </ul>
                           
-                          <c:if test="${login != null }">
-                      
+                          <c:if test="${login != null && login.type == 0 }">
                             <button type="button" class="btn btn-info" onclick="location.href='<c:url value="/oneboard/write" />'">글 등록</button>
-           </c:if>
+          						 </c:if>
                         </div>
 				
 				<!-- 페이지 관련 버튼(이전 , 다음, 페이지번호)을 클릭 시 같이 숨겨서 보내줄 공통 값 선언  -->

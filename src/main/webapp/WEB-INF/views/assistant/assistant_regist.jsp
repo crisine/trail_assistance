@@ -128,8 +128,9 @@ footer li a {
 								
 								<button type="button" id='btn_add' style="position:relative; bottom: 150px; left: 20px;">></button>
 								<button type="button" id='btn_minus' style="position:relative; bottom: 50px; right: 12px;"><</button>
-								<select name="law2" id='law2' size="10" style="width: 150px; height: 200px;">
+								<select name="law3" id='law2' size="10" style="width: 150px; height: 200px;">
 								</select>
+								<input type="hidden" id="law3" name="law2" value="">
 							</div>
 							<hr>
 
@@ -144,23 +145,23 @@ footer li a {
 								<tr>
 									<td>조력자명</td>
 									<td>
-										<input type="text" name="helper_name" id="helper_name" class="form-control" placeholder="홍길동">
+										<input type="text" maxlength="10" name="helper_name" id="helper_name" class="form-control" placeholder="홍길동">
 									</td>
 									<td>주민등록번호</td>
 									<td>
-										<input type="text" name="helper_ssn_number" id="helper_ssn_number"
-											class="form-control">
+										<input type="text"  maxlength="14" name="helper_ssn_number" id="helper_ssn_number"
+											class="form-control" placeholder="987654-1234567">
 									</td>
 								</tr>
 								<tr>
 									<td>휴대전화번호</td>
 									<td>
-										<input type="text" name="helper_phone_tel" id="helper_phone_tel"
+										<input type="text"  maxlength="13" name="helper_phone_tel" id="helper_phone_tel"
 											class="form-control" placeholder="010-1234-1234">
 									</td>
 									<td>전화번호</td>
 									<td>
-										<input type="text" name="helper_home_tel" id="helper_home_tel" class="form-control" placeholder="02-1234-1234">
+										<input type="text"  maxlength="13" name="helper_home_tel" id="helper_home_tel" class="form-control" placeholder="02-1234-1234">
 									</td>
 								</tr>
 	
@@ -168,11 +169,11 @@ footer li a {
 									<td>이메일</td>
 									<td>
 										<input type="text" name="helper_email_address" id="helper_email_address"
-											class="form-control" placeholder="abcdef@abcdef.com">
+											class="form-control" placeholder="abcdef@abcdef.com" maxlength="40">
 									</td>
 									<td>직업</td>
 									<td>
-										<input type="text" name="helper_job" id="helper_job" class="form-control" placeholder="의사">
+										<input type="text"  maxlength="10" name="helper_job" id="helper_job" class="form-control" placeholder="의사">
 									</td>
 								</tr>
 	
@@ -185,7 +186,7 @@ footer li a {
 												<input type="text" name="helper_zipcode" id="helper_zipcode"
 													class="form-control" readonly="readonly">
 											</div>
-											<button type="button" class="btn" onclick="goPopup()">주소찾기</button>
+											<button type="button" class="btn"  id="helper_add_btn">주소찾기</button>
 										</div>
 									</td>
 								</tr>
@@ -198,7 +199,7 @@ footer li a {
 								<tr>
 									<td>상세주소</td>
 									<td colspan="2">
-										<input type="text" name="helper_address2" id="helper_address2" class="form-control">
+										<input type="text" name="helper_address2" id="helper_address2" class="form-control" maxlength="20">
 									</td>
 								</tr>
 							</tbody>
@@ -215,12 +216,12 @@ footer li a {
 								<tr>
 									<td>사무소명</td>
 									<td>
-										<input type="text" name="helper_office_name" id="helper_office_name"
+										<input type="text"  maxlength="15" name="helper_office_name" id="helper_office_name"
 											class="form-control" placeholder="법무법인">
 									</td>
 									<td>사업자등록번호</td>
 									<td>
-										<input type="text" name="helper_bussiness_reg_num" id="helper_bussiness_reg_num"
+										<input type="text"  maxlength="13" name="helper_bussiness_reg_num" id="helper_bussiness_reg_num"
 											class="form-control" placeholder="123-12-12345">
 									</td>
 								</tr>
@@ -228,12 +229,12 @@ footer li a {
 								<tr>
 									<td>사무소전화번호</td>
 									<td>
-										<input type="text" name="helper_offic_tel" id="helper_offic_tel"
+										<input type="text"  maxlength="12" name="helper_offic_tel" id="helper_offic_tel"
 											class="form-control" placeholder="1234-1234" >
 									</td>
 									<td>사무소팩스번호</td>
 									<td>
-										<input type="text" name="helper_offic_fax_tel" id="helper_offic_fax_tel"
+										<input type="text"  maxlength="14" name="helper_offic_fax_tel" id="helper_offic_fax_tel"
 											class="form-control" placeholder="123-1234-4567">
 									</td>
 								</tr>
@@ -246,7 +247,7 @@ footer li a {
 												<input type="text" name="helper_office_zipcode" id="helper_office_zipcode"
 													class="form-control" readonly="readonly">
 											</div>
-											<button type="button" class="btn office_add" onclick="goPopup2()">주소찾기</button>
+											<button type="button" class="btn office_add" id="helper_office_add_btn">주소찾기</button>
 										</div>
 									</td>
 								</tr>
@@ -261,7 +262,7 @@ footer li a {
 									<td>상세주소</td>
 									<td colspan="2">
 										<input type="text" name="helper_office_address2" id="helper_office_address2"
-											class="form-control">
+											class="form-control" maxlength="20">
 									</td>
 								</tr>
 							</tbody>
@@ -292,7 +293,7 @@ footer li a {
 											</label>
 										</td>
 										<td>
-											<textarea name="helper_sosong_content" id="helepr_sosong_content" rows="1" style="resize: none;" class="form-control"></textarea>
+											<textarea name="helper_sosong_content" maxlength="40"  id="helepr_sosong_content" rows="1" style="resize: none;" class="form-control"></textarea>
 										</td>
 									</tr>
 									<tr>
@@ -302,11 +303,11 @@ footer li a {
 												<input	type="radio" name="helper_bohum" value="yes"> 예
 											</label> 
 											<label class="radio-inline"> 
-												<input type="radio"name="helper_bohum" value="no"> 아니오
+												<input type="radio"name="helper_bohum"  value="no"> 아니오
 											</label>
 										</td>
 										<td>
-											<textarea name="helper_bohum_content" id="helper_bohum_content" rows="1" style="resize: none;"	class="form-control"></textarea>
+											<textarea name="helper_bohum_content" id="helper_bohum_content"  maxlength="40" rows="1" style="resize: none;"	class="form-control"></textarea>
 										</td>
 									</tr>
 									<tr>
@@ -320,7 +321,7 @@ footer li a {
 											</label>
 										</td>
 										<td>
-											<textarea name="helper_hyungsa_content"	id="helper_hyungsa_content" rows="1" style="resize: none;"	class="form-control"></textarea>
+											<textarea name="helper_hyungsa_content"	id="helper_hyungsa_content"  maxlength="40" rows="1" style="resize: none;"	class="form-control"></textarea>
 										</td>
 									</tr>
 								</tbody>
@@ -447,6 +448,8 @@ $(function() {
 	// 입력값 검사용 정규식 나열
 	const getHelperNameCheck = RegExp(/^[가-힣]+$/);
 	const getPhoneNumCheck = RegExp(/\d{3}-\d{4}-\d{4}/);
+	//0901 - 전화번호
+	const getTeclNumCheck = RegExp(/\d{2}-\d{4}-\d{4}/);
 	const getHelperSsnCheck = RegExp(/\d{6}-\d{7}/);
 	const getHelperEmailCheck = RegExp(/\S+@\S+\.\S+/);
 	const getHelperBusinessRegCheck = RegExp(/\d{3}-\d{2}-\d{5}/);
@@ -463,7 +466,9 @@ $(function() {
 		chk8 = false,
 		chk9 = false,
 		chk10 = false,
-		chk11 = false;
+		chk11 = false,
+		//0901전화번호
+		chk12=false;
 	
 
 	$('#helper_name').keyup(function() {
@@ -589,17 +594,30 @@ $(function() {
 			chk11 = true;
 		}
 	});
+	$('#helper_home_tel').keyup(function() {
+		if ($(this).val() === '') {
+			$(this).css('background', 'pink');
+			chk12 = false;
+		} else if (!getTeclNumCheck.test($(this).val())) {
+			$(this).css('background', 'pink');
+			chk12 = false;
+		} else {
+			$(this).css('background', '');
+			chk12 = true;
+		}
+	});
+
 
 
 
  	$('.submit_btn').click(function() {
- 		$('form').submit();
+ 		
 
 	/* 	if ($('#mid').val() !== 'sel' && $('#small').val() === 'sel') {
 			alert('조력자 소분야를 다시 설정하세요');
 			return
 		} */
- 	/* 	console.log(chk1);
+ 	 	console.log(chk1);
 		console.log(chk2);
 		console.log(chk3);
 		console.log(chk4);
@@ -610,14 +628,15 @@ $(function() {
 		console.log(chk9);
 		console.log(chk10);
 		console.log(chk11);
+		console.log(chk12);
 		if (chk1 && chk2 && chk3 && chk4 && chk5 && chk6&& chk8 &&
-			chk9 && chk10 && chk11) {
+			chk9 && chk10 && chk11&&chk12) {
 		
 
 			$('form').submit();
 		} else {
 			alert('모든 양식을 정확하게 입력하였는지 확인해 주십시오.');
-		}  */
+		} 
 
 });
 });
@@ -701,7 +720,7 @@ $(function() {
 				}
 				//중복되지 않았을 시에 배열에 저장 됨
 				arr.push(selected_text[n]); //법원 이름만 저장됨
-				
+				$('#law3').attr('value',arr);
 
 				arr2.push(dd);  //<option>~~~</option>의 형태로 배열에 저장됨
 
@@ -752,6 +771,22 @@ $(function() {
 		
 		})
 
+		
+		
+		
+		$('#helper_add_btn').click(function(){
+			goPopup();
+		})
+		
+		
+		
+		$('#helper_office_add_btn').click(function(){
+			goPopup2();
+		})
+		
+		
+		
+		
 	
 		
 	    }); //JQuery 종료

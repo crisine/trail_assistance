@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.assistance.trial.account.service.IAccountService;
 import com.assistance.trial.articleboard.service.IArticleBoardService;
@@ -63,30 +64,49 @@ public class AssistanceRegistController {
    
 
 
+
    //0830 최필규 수정
    //0825 나경민 수정
    ///조력자 공고 게시판 내용 가져오는 화면 
    @GetMapping("/articlelist")
-   public String articlelist(Model model,HttpSession session) {
+   public String articlelist(Model model,HttpSession session, RedirectAttributes ra) {
 
       System.out.println("select : " + select);
-      
+
       //개인/기관시 각각 해당되는 리스트 가져오기
       if(select == "개인") {
-         model.addAttribute("assistantarticle", articleservice.getSelectUserList());
-         System.out.println(model);
-         return "assistant/assistant_article_list";
+
+         //0901 최필규 추가
+         if(articleservice.getSelectUserList().size() == 0) {
+            System.out.println("개인 리턴한 사이즈 : " + articleservice.getSelectUserList().size());
+            ra.addFlashAttribute("msg", "현재 모집중인 개인 조력자 공고가 없습니다!");
+            return "redirect:/";
+         } else {
+            model.addAttribute("assistantarticle", articleservice.getSelectUserList());
+            System.out.println(model);
+            return "assistant/assistant_article_list";
+         }
+
       } else {
-         model.addAttribute("assistantarticle", articleservice.getSelectAgencyList());
-         System.out.println(model);
-         return "assistant/assistant_article_list";
+         if(articleservice.getSelectAgencyList().size() == 0) {
+            System.out.println("기관 리턴한 사이즈 : " + articleservice.getSelectAgencyList().size());
+            ra.addFlashAttribute("msg", "현재 모집중인 기관 조력자 공고가 없습니다!");
+            return "redirect:/";
+         } else {
+            model.addAttribute("assistantarticle", articleservice.getSelectAgencyList());
+            System.out.println(model);
+            return "assistant/assistant_article_list";
+         }
+
       }
-      
+
    }
+
    
    
    @PostMapping("/articlelist")
    public String articlelist(HttpServletRequest request,HttpSession session) {
+	   System.out.println((AccountVO)session.getAttribute("login"));
       contents = request.getParameter("arti_article_title");
       return "redirect:/assistant/regist";
    }
@@ -94,18 +114,21 @@ public class AssistanceRegistController {
    //신청서 화면
    @GetMapping("/regist")
    public String RegistPage(Model model,HttpSession session) {
+	   
 	   System.out.println((AccountVO)session.getAttribute("login"));
       model.addAttribute("contents", contents);
       return "assistant/assistant_regist";
 
    }
+   
 
    //첫번째 화면에서 다음 버튼 클릭시
    @PostMapping("/regist")
    public String createPage(AssistantRegistVO vo,Model model,HttpSession session) {
+	   System.out.println((AccountVO)session.getAttribute("login"));
       //현재 로그인한 계정의 account 테이블의 시퀀스 번호인(accid)를 얻기 위함
 	  AccountVO login=(AccountVO)session.getAttribute("login");
-
+	
       int loginAccId=accountservice.selectOne(login.getAccount()).getAccId();
       
       System.out.println("accid"+login.getAccId());
@@ -141,7 +164,7 @@ public class AssistanceRegistController {
    //두번째 화면에서 접수 버튼 클릭시
    @PostMapping("/update")                      
    public String insertPage2(AssistantRegistVO vo,EvalVO evalvo,HttpSession session) {
-
+	   System.out.println((AccountVO)session.getAttribute("login"));
       //assistant 테이블의 기본키를 가져와서  셋팅하고 update 할때 사용 
       vo.setAssistant_id(nums);
       vo.setHelper_apply_status("접수");
@@ -203,7 +226,7 @@ public class AssistanceRegistController {
     		String fileloca = sdf.format(date);
 
     		//저장할 폴더 경로
-    		String uploadPath = "C:\\upload\\" + fileloca;
+    		String uploadPath = "/var/upload/" + fileloca;
 
     		File folder = new File(uploadPath);
     		if(!folder.exists()) {
@@ -230,7 +253,7 @@ public class AssistanceRegistController {
     		System.out.println("변경해서 저장할 파일명: " + fileName);
 
     		//업로드한 파일을 서버 컴퓨터 내의 지정한 경로에 실제로 저장.
-    		File saveFile = new File(uploadPath + "\\" + fileName);
+    		File saveFile = new File(uploadPath + "/" + fileName);
     		try {
     			file.transferTo(saveFile);
     		} catch (Exception e) {
@@ -270,7 +293,7 @@ public class AssistanceRegistController {
 
     		//DB에 insert 작업을 실행.
     		//DB에 저장할 이름 설정
-    		String saveFileName = uploadPath + "\\" + fileName;
+    		String saveFileName = uploadPath + "/" + fileName;
 
     		assistantservice.upload1(saveFileName);
 
@@ -291,7 +314,7 @@ public class AssistanceRegistController {
     		String fileloca = sdf.format(date);
 
     		//저장할 폴더 경로
-    		String uploadPath = "C:\\upload\\" + fileloca;
+    		String uploadPath = "/var/upload/" + fileloca;
 
     		File folder = new File(uploadPath);
     		if(!folder.exists()) {
@@ -318,7 +341,7 @@ public class AssistanceRegistController {
     		System.out.println("변경해서 저장할 파일명: " + fileName);
 
     		//업로드한 파일을 서버 컴퓨터 내의 지정한 경로에 실제로 저장.
-    		File saveFile = new File(uploadPath + "\\" + fileName);
+    		File saveFile = new File(uploadPath + "/" + fileName);
     		try {
     			file.transferTo(saveFile);
     		} catch (Exception e) {
@@ -358,7 +381,7 @@ public class AssistanceRegistController {
     		
     		//DB에 insert 작업을 실행.
     		//DB에 저장할 이름 설정
-    		String saveFileName = uploadPath + "\\" + fileName;
+    		String saveFileName = uploadPath + "/" + fileName;
 
     		assistantservice.upload2(saveFileName);
 
@@ -379,7 +402,7 @@ public class AssistanceRegistController {
     		String fileloca = sdf.format(date);
 
     		//저장할 폴더 경로
-    		String uploadPath = "C:\\upload\\" + fileloca;
+    		String uploadPath = "/var/upload/" + fileloca;
 
     		File folder = new File(uploadPath);
     		if(!folder.exists()) {
@@ -406,7 +429,7 @@ public class AssistanceRegistController {
     		System.out.println("변경해서 저장할 파일명: " + fileName);
 
     		//업로드한 파일을 서버 컴퓨터 내의 지정한 경로에 실제로 저장.
-    		File saveFile = new File(uploadPath + "\\" + fileName);
+    		File saveFile = new File(uploadPath + "/" + fileName);
     		try {
     			file.transferTo(saveFile);
     		} catch (Exception e) {
@@ -446,7 +469,7 @@ public class AssistanceRegistController {
 
     		//DB에 insert 작업을 실행.
     		//DB에 저장할 이름 설정
-    		String saveFileName = uploadPath + "\\" + fileName;
+    		String saveFileName = uploadPath + "/" + fileName;
 
     		assistantservice.upload3(saveFileName);
 

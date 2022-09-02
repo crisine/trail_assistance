@@ -47,7 +47,7 @@
 										<tbody>
 											<tr>
 
-												<th class="title">제목</th>
+												<th class="title">조력자 유형</th>
 												<td colspan="6"><input class="form-control input-sm"
 													id="title" name="article_title"></td>
 

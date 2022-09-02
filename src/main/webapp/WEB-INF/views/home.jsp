@@ -204,11 +204,14 @@ ol {
    </div>
 </div>
 
+
+
 <!-- 공고 리스트 케러셀 -->
 <div class="container-fluid sub-main-wrap">
    <div class="row">
       <div class="col-md-1"></div>
-      <div class="col-md-4">
+      
+<div class="col-md-4">
          <div id="carousel-example-generic2" class="carousel slide sub-slide"
             data-ride="carousel">
             <!-- Indicators -->
@@ -222,7 +225,7 @@ ol {
             <div class="carousel-inner sub-carousel" role="listbox">
                <div class="item active">
                   <div class="carousel-img-wrap text-center">
-                     <a href="<c:url value='/assistant/articlelist' />"> <img
+                     <a href="<c:url value='/assistant/category_select' />"> <img
                         src="resources/img/6217271_doctor_job_man_medical_people_icon.svg"
                         alt="...">
                      </a>
@@ -234,7 +237,7 @@ ol {
                </div>
                <div class="item">
                   <div class="carousel-img-wrap text-center">
-                     <a href="<c:url value='/assistant/articlelist' />"> <img
+                     <a href="<c:url value='/assistant/category_select' />"> <img
                         src="resources/img/7114151_language change_language_translator_subtitle_dictionary_icon.svg"
                         alt="...">
                      </a>
@@ -246,7 +249,7 @@ ol {
                </div>
                <div class="item">
                   <div class="carousel-img-wrap text-center">
-                     <a href="<c:url value='/assistant/articlelist' />"> <img
+                     <a href="<c:url value='/assistant/category_select' />"> <img
                         src="resources/img/9151171_constitution_law_jurisprudence_book_justice_icon.svg"
                         alt="...">
                      </a>
@@ -319,6 +322,9 @@ ol {
 
    </div>
 </div>
+
+
+
 </div>
 
 
@@ -376,5 +382,9 @@ ol {
       alert('비밀번호가 성공적으로 변경되었습니다.');
    } else if (msg === 'pwChangeFailed') {
       alert('비밀번호 변경에 실패했습니다.');
+   } else if(msg === '현재 모집중인 개인 조력자 공고가 없습니다!') {
+      alert('현재 모집중인 개인 조력자 공고가 없습니다!');
+   } else if(msg === '현재 모집중인 기관 조력자 공고가 없습니다!') {
+      alert('현재 모집중인 기관 조력자 공고가 없습니다!');
    }
 </script>

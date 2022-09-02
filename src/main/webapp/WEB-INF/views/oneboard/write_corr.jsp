@@ -53,16 +53,8 @@
 
 							<form action="<c:url value='/oneboard/oneUpdate' />"
 								method="post" name="updateForm">
-
-								<div>
-									<label>DATE</label>
-									<c:if test="${one.one_updatedate == null}">
-										<p>${one.one_regdate}</p>
-									</c:if>
-									<c:if test="${one.one_updatedate != null}">
-										<p>${one.one_updatedate}</p>
-									</c:if>
-								</div>
+								<input type="hidden" name="one_id" value="${one.one_id}">
+						
 								<div class="form-group">
 									<label>작성자</label> <input class="form-control"
 										name='one_writer' value="${one.one_writer}" readonly>
@@ -71,30 +63,41 @@
 
 
 								<div class="form-group">
-									<label>문의 유형 1</label> <input class="form-control"
-										name='one_cate_one' value="${one.one_cate_one}">
+									<label>문의  유형</label> 
+									<select class=" form-control input-sm sel"
+												name="one_cate_one" >
+													<option <c:if test='${one.one_cate_one=="계정 분실"}'> selected='selected'</c:if>>계정분실</option>
+													<option <c:if test='${one.one_cate_one=="이용 문의"}'> selected='selected'</c:if>>이용 문의</option>
+													<option  <c:if test='${one.one_cate_one=="건의 사항"}'> selected='selected'</c:if>>건의 사항</option>
+													<option  <c:if test='${one.one_cate_one=="버그 및 오류 신고"}'> selected='selected'</c:if>>버그 및 오류 신고</option>
+													<option <c:if test='${one.one_cate_one=="기타"}'> selected='selected'</c:if>>기타</option>
+											</select></td>
 								</div>
 
 
 
 								<div class="form-group">
 									<label>문의 제목</label> <input class="form-control"
-										name='one_title' id="title" value="${one.one_title}">
+										name='one_title' id="title" value="${one.one_title}" >
 								</div>
 
 								<div class="form-group">
 									<label>문의 내용</label>
 									<textarea class="form-control" id="content" style="resize: none;" rows="10" name='one_content'>${one.one_content}</textarea>
+									
+									
 								</div>
 
+							<c:if test="${login.type == 1}">
 
+						
+						
 								<div class="form-group">
 									<label>번호</label> <input class="form-control" name='one_id'
 										value="${one.one_id}" readonly>
 								</div>
-
-						
-
+							</c:if>
+				
 								<div class="text-right ">
 									<button type="button" id="listBtn" class="btn btn-dark">목록</button>
 									<button type="button" id="updateBtn" class="btn btn-primary">변경</button>
@@ -116,9 +119,6 @@
 			</div>
 
 		</div>
-
-
-
 
 
 	<script>

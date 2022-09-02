@@ -80,6 +80,9 @@ public class NoticeBoardController {
 	//글 수정 처리
 	@PostMapping("/noticeUpdate")
 	public String noticeUpdate(NoticeBoardVO vo, RedirectAttributes ra,HttpSession session) {
+		
+		System.out.println("notice update vo  is "+vo);
+		System.out.println("vo  get notice _id is "+vo.getNotice_id());
 		service.update(vo);
 		ra.addFlashAttribute("msg", "updateSuccess");
 		return "redirect:/noticeboard/view/" + vo.getNotice_id();

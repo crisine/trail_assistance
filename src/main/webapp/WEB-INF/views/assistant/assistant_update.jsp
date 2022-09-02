@@ -291,12 +291,12 @@ footer li a {
 								<tr>
 									<td>학교명</td>
 									<td colspan="3"><input type="text" class="form-control"
-										name="helper_school_name" id="helper_school_name">
+										name="helper_school_name" id="helper_school_name"  maxlength="10" >
 										<div id="helper_school_name_chk" class="text-center"></div></td>
 								</tr>
 								<tr>
 									<td>학과(전공)</td>
-									<td><input type="text" class="form-control"
+									<td><input type="text" class="form-control"  maxlength="20" 
 										name="helper_school_major" id="helper_school_major">
 										<div id="helper_school_major_chk" class="text-center"></div></td>
 									<td>학위</td>
@@ -361,14 +361,14 @@ footer li a {
 							<tbody>
 								<tr>
 									<td>학교명</td>
-									<td colspan="3"><input type="text" class="form-control"
+									<td colspan="3"><input type="text" class="form-control" maxlength="10" 
 										name="modi_helper_school_name" id="modi_helper_school_name">
 										<div id="modi_helper_school_name_chk" class="text-center"></div>
 									</td>
 								</tr>
 								<tr>
 									<td>학과(전공)</td>
-									<td><input type="text" class="form-control"
+									<td><input type="text" class="form-control" maxlength="20" 
 										name="modi_helper_school_major" id="modi_helper_school_major">
 										<div id="modi_helper_school_major_chk" class="text-center"></div></td>
 									<td>학위</td>
@@ -438,7 +438,7 @@ footer li a {
 							<tbody>
 								<tr>
 									<td>회사명/활동기관명</td>
-									<td colspan="3"><input type="text"
+									<td colspan="3"><input type="text"  maxlength="20" 
 										name="helper_career_name" id="helper_career_name">
 										<div id="helper_career_name_chk" class="text-center"></div></td>
 								</tr>
@@ -449,18 +449,18 @@ footer li a {
 										<div id="helper_career_period_chk" class="text-center"></div>
 									</td>
 									<td>수행업무</td>
-									<td><input type="text" name="helper_career_wrok"
+									<td><input type="text" name="helper_career_wrok"  maxlength="20" 
 										id="helper_career_wrok">
 										<div id="helper_career_wrok_chk" class="text-center"></div></td>
 								</tr>
 								<tr>
 									<td>부서</td>
-									<td><input type="text" name="helper_career_department"
+									<td><input type="text" name="helper_career_department"  maxlength="20" 
 										id="helper_career_department">
 										<div id="helper_career_department_chk" class="text-center"></div>
 									</td>
 									<td>직책</td>
-									<td><input type="text" name="helper_career_position"
+									<td><input type="text" name="helper_career_position"  maxlength="10" 
 										id="helper_career_position">
 										<div id="helper_career_position_chk" class="text-center"></div>
 									</td>
@@ -498,7 +498,7 @@ footer li a {
 							<tbody>
 								<tr>
 									<td>회사명/활동기관명</td>
-									<td colspan="3"><input type="text"
+									<td colspan="3"><input type="text"  maxlength="20" 
 										name="modi_helper_career_name" id="modi_helper_career_name">
 										<div id="modi_helper_career_name_chk" class="text-center"></div>
 									</td>
@@ -510,20 +510,20 @@ footer li a {
 										<div id="modi_helper_career_period_chk" class="text-center"></div>
 									</td>
 									<td>수행업무</td>
-									<td><input type="text" name="modi_helper_career_wrok"
+									<td><input type="text" name="modi_helper_career_wrok"  maxlength="20" 
 										id="modi_helper_career_wrok">
 										<div id="modi_helper_career_wrok_chk" class="text-center"></div>
 									</td>
 								</tr>
 								<tr>
 									<td>부서</td>
-									<td><input type="text"
+									<td><input type="text"  maxlength="20" 
 										name="modi_helper_career_department"
 										id="modi_helper_career_department">
 										<div id="modi_helper_career_department_chk"
 											class="text-center"></div></td>
 									<td>직책</td>
-									<td><input type="text" name="modi_helper_career_position"
+									<td><input type="text" name="modi_helper_career_position"  maxlength="20" 
 										id="modi_helper_career_position">
 										<div id="modi_helper_career_position_chk" class="text-center"></div>
 									</td>
@@ -568,21 +568,21 @@ footer li a {
                                 <tr>
                                     <td>종목/등급 명</td>
                                     <td>
-                                        <input type="text" class="form-control" name="helper_license_name" id="helper_license_name">
+                                        <input type="text"  maxlength="20" class="form-control" name="helper_license_name" id="helper_license_name">
                                         <div id="helper_license_name_chk" class="text-center"></div>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>발급기관</td>
                                     <td>
-                                        <input type="text" class="form-control" name="helper_license_agency" id="helper_license_agency">
+                                        <input type="text" class="form-control"  maxlength="20" name="helper_license_agency" id="helper_license_agency">
                                         <div id="helper_license_agency_chk" class="text-center"></div>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>자격/면허 번호</td>
                                     <td>
-                                        <input type="text" class="form-control" name="helper_license_num" id="helper_license_num">
+                                        <input type="text" class="form-control"  maxlength="20" name="helper_license_num" id="helper_license_num">
                                         <div id="helper_license_num_chk" class="text-center"></div>
                                     </td>
                                         
@@ -632,21 +632,21 @@ footer li a {
                             <tr>
                                 <td>종목/등급 명</td>
                                 <td>
-                                    <input type="text" class="form-control"name="modi_helper_license_name" id="modi_helper_license_name">
+                                    <input type="text" class="form-control" maxlength="20" name="modi_helper_license_name" id="modi_helper_license_name">
                                     <div id="modi_helper_license_name_chk" class="text-center"></div>
                                 </td>
                             </tr>
                             <tr>
                                 <td>발급기관</td>
                                 <td>
-                                    <input type="text" class="form-control"name="modi_helper_license_agency" id="modi_helper_license_agency">
+                                    <input type="text" maxlength="20" class="form-control"name="modi_helper_license_agency" id="modi_helper_license_agency">
                                     <div id="modi_helper_license_agency_chk" class="text-center"></div>
                                 </td>
                             </tr>
                             <tr>
                                 <td>자격/면허 번호</td>
                                 <td>
-                                    <input type="text" class="form-control"name="modi_helper_license_num" id="modi_helper_license_num">
+                                    <input type="text" maxlength="20" class="form-control"name="modi_helper_license_num" id="modi_helper_license_num">
                                     <div id="modi_helper_license_num_chk" class="text-center"></div>
                                 </td>
                             </tr>

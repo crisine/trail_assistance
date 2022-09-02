@@ -80,9 +80,10 @@
 				</form>
 				<table class="table table-bordered table-hover">
 					<thead>
-						<c:if test="${login.type==1}">
+					<%-- 	<c:if test="${login.type==1}">
 							<th>번호</th>
-						</c:if>
+						</c:if> --%>
+						
 						<th>분류</th>
 
 
@@ -94,10 +95,10 @@
 					<tbody style="text-align: center;">
 						<c:forEach var="vo" items="${noticeList}">
 							<tr>
-								<c:if test="${login.type == 1}">
+								<%-- <c:if test="${login.type == 1}">
 									<td>${vo.notice_id}</td>
 								</c:if>
-
+ --%>
 								<td>${vo.notice_type}</td>
 
 

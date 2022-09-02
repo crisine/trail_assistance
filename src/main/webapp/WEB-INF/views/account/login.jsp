@@ -78,7 +78,7 @@
         <c:if test="${login != null}">
         	<h1>${login.account} 로 현재 로그인 중입니다.</h1>
         	<!-- 메인 페이지로 보내는 링크 상대 링크로 변경 (c:url ...) -->
-        	<a href="${pageContext.request.contextPath}">메인 페이지로</a>
+        	<a href="<c:url value='/' />">메인 페이지로</a>
         </c:if>
     </div>
     <%@ include file="/WEB-INF/views/include/footer.jsp" %>

@@ -11,7 +11,7 @@ import lombok.ToString;
 /*
 CREATE TABLE faqboard(
 faq_id NUMBER, --faq 번호 
-faq_type VARCHAR(20), --faq 유형 
+faq_type VARCHAR(100), --faq 유형 
 faq_title VARCHAR(100) NOT NULL, --faq 제목 
 faq_regdate DATE DEFAULT sysdate, --faq 등록된 날짜
 faq_updatedate DATE DEFAULT NULL, --faq 수정된 날자 

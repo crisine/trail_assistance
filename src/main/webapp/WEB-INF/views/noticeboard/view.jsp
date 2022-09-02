@@ -55,7 +55,7 @@
 					</div>
 
 					<form>
-						<c:if test="${login.type == 1}">
+		<%-- 				<c:if test="${login.type == 1}">
 
 							<div>
 								<label>DATE</label>
@@ -67,20 +67,20 @@
 								</c:if>
 
 							</div>
-						</c:if>
+						</c:if> --%>
 
 						<div class="contenIn">
 							<table class="tableVer table-bordered">
 								<caption style="display: none">조력자 등재 공고 게시글 상세정보 표</caption>
 								<tbody>
 									<tr>
-										<c:if test="${login.type == 1}">
+								<%-- 		<c:if test="${login.type == 1}">
 
 											<th>번호</th>
 
 
 											<td>${notice.notice_id}</td>
-										</c:if>
+										</c:if> --%>
 
 										<th>작성자</th>
 										<td>${notice.notice_writer}</td>

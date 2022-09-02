@@ -56,7 +56,7 @@
                                        <td class="t-title">작성자</td>
                                         <td>
                                                 <input type="text" class="form-control input-sm" name="one_writer"
-                                                value="${login.account}" readonly>
+                                                value="${one.one_writer}" readonly>
                                                 </td>
                                        </tr>
                                       
@@ -64,19 +64,19 @@
                                         <td class="t-title">문의 제목 * </td>
                                                
                                                 <td>
-                                                <input type="text" class="form-control input-sm" name="one_title" readonly>
+                                                <input type="text" class="form-control input-sm" name="one_title"  value="${one.one_title}"readonly>
                                                 </td>
                                           </tr>
                                          
                                           <tr>
-                                          <td class="t-title">문의 종류1 *</td>
+                                          <td class="t-title">문의 유형 *</td>
                                         <td>
-                                                <select class=" form-control input-sm sel" name="one_cate_one" readonly>
-                                                	<option >문의 유형 1</option>
-                                                	<option >문의 유형 2</option>
-                                                	<option >문의 유형 3</option>
-                                                	<option >문의 유형 3</option>
-                                                	<option >문의 유형 4</option>
+                                                <select class=" form-control input-sm sel" name="one_cate_one" readonly disabled="disabled">
+                                                		<option <c:if test='${one.one_cate_one=="계정 분실"}'> selected='selected'</c:if>>계정분실</option>
+													<option <c:if test='${one.one_cate_one=="이용 문의"}'> selected='selected'</c:if>>이용 문의</option>
+													<option  <c:if test='${one.one_cate_one=="건의 사항"}'> selected='selected'</c:if>>건의 사항</option>
+													<option  <c:if test='${one.one_cate_one=="버그 및 오류 신고"}'> selected='selected'</c:if>>버그 및 오류 신고</option>
+													<option <c:if test='${one.one_cate_one=="기타"}'> selected='selected'</c:if>>기타</option>
                                                 </select>
                                                 </td>
                                        </tr>
@@ -86,10 +86,10 @@
                                             <tr>
                                                 <td class="t-title">문의 내용 *</td>
                                                 <td>
-                                                <textarea class="form-control" rows="10" name="one_content"  readonly></textarea></td>
+                                                <textarea class="form-control" rows="10" name="one_content" style="resize: none;"  readonly>${one.one_content}</textarea>
+                                                </td>
                                             </tr>
-                                            
-                                
+                    
                                         </tbody>
                                     </table>
                          
@@ -100,7 +100,7 @@
        			</form>
                                 
                                  <div class="butt">
-                           <c:if test="${login.type ==1 }">
+                           <c:if test="${login.type ==0  || login.type==1}">
                             <button type="button" class="btn btn-primary" onclick="location.href='<c:url value="/oneboard/write_corr?one_id=${one.one_id}&one_type=${one.one_type}" />'">변경</button>
                                </c:if>
                             <button type="button" class="btn btn-dark" onclick="location.href='${pageContext.request.contextPath}/oneboard/list?pageNum=${p.pageNum}&cpp=${p.cpp}&condition=${p.condition}&keyword=${p.keyword}'">목록</button>

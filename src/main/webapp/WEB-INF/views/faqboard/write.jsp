@@ -75,11 +75,11 @@
 											<td class="t-title">문의 유형 *</td>
 											<td><select class=" form-control input-sm sel"
 												name="faq_type">
-													<option>문의 유형 1</option>
-													<option>문의 유형 2</option>
-													<option>문의 유형 3</option>
-													<option>문의 유형 3</option>
-													<option>문의 유형 4</option>
+													<option>계정 분실</option>
+													<option>이용 문의</option>
+													<option>건의 사항</option>
+													<option>버그 및 오류신고</option>
+													<option>기타</option>
 
 											</select></td>
 										</tr>

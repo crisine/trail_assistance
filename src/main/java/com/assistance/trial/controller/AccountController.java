@@ -3,6 +3,8 @@ package  com.assistance.trial.controller;
 
 import java.util.Map;
 
+import javax.servlet.ServletContainerInitializer;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -136,9 +138,14 @@ public class AccountController {
 	      System.out.println("/find/login POST 요청 들어옴");
 	      System.out.println("param : " + param);
 	      
+	      ///0901 ㅅ세ㅕㄴ 유지시간 늘리기
+	      session.setMaxInactiveInterval(3600);
+	      /////////////////////////
+	      
+	      
+	      
 	      // 프론트에서 받아온 멤버의 ID를 매개변수로 넘겨 DB에서 일치하는 ID가 존재하는지 검색
 	      AccountVO accVo = service.selectOne(param.get("account"));
-	      
 	      // 아이디 존재하고 비밀번호도 일치할 때
 	      if (accVo != null) {
 	         if (param.get("password").equals(accVo.getPassword())) {

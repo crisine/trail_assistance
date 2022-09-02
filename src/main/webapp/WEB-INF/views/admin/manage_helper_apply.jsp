@@ -437,7 +437,9 @@
 		});
 		
 	
-		
+		$('.btn_list_go').click(function(){
+				location.href="<c:url value='/admin/manage_assistant_history'/>"
+		})
 		
 		
 	});

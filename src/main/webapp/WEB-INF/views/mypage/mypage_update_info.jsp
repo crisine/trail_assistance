@@ -47,7 +47,7 @@
                      <th>휴대전화번호</th>
                      <td><input type="text" class="form-control" placeholder="000-0000-0000"
                         id="helperPhoneTel" value="${astVo.helper_phone_tel }"
-                        name="helper_phone_tel">
+                        name="helper_phone_tel" maxlength="13" >
                         <strong id="phoneCheck"></strong>
                      </td>
                   </tr>
@@ -74,23 +74,23 @@
                <tbody>
                   <tr>
                      <th>사무소명</th>
-                     <td><input type="text" class="form-control"
+                     <td><input type="text" class="form-control"  maxlength="20" 
                         value="${astVo.helper_office_name}" name="helper_office_name"></td>
                         
                      <th>사업자 등록번호</th>
-                     <td><input type="text" class="form-control" placeholder="000-00-00000" id="helper_bussiness_reg_num"
+                     <td><input type="text"  maxlength="13" class="form-control" placeholder="000-00-00000" id="helper_bussiness_reg_num"
                         value="${astVo.helper_bussiness_reg_num}" name="helper_bussiness_reg_num">
                         <strong id="bussinessNumCheck"></strong>   
                         </td>
                   </tr>
                   <tr>
                      <th>사무소 전화번호</th>
-                     <td><input type="text" class="form-control" id="helper_offic_tel" placeholder="0000-0000"
+                     <td><input type="text"  maxlength="9" class="form-control" id="helper_offic_tel" placeholder="0000-0000"
                         value="${astVo.helper_offic_tel}" name="helper_offic_tel">
                         <strong id="officeTelCheck"></strong>                     
                      </td>
                      <th>사무소 팩스번호</th>
-                     <td><input type="text" class="form-control" id="helper_offic_fax_tel"
+                     <td><input type="text" maxlength="13"  class="form-control" id="helper_offic_fax_tel"
                         value="${astVo.helper_offic_fax_tel}" name="helper_offic_fax_tel">
                         <strong id="officeFaxCheck"></strong>
                      </td>

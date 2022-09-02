@@ -63,7 +63,7 @@
 											<td class="t-title">작성자</td>
 											<td><input type="text" class="form-control input-sm"
 												name="one_writer" value="${login.account}"
-												readonly="readonly"></td>
+												readonly></td>
 										</tr>
 
 										<tr>
@@ -74,15 +74,15 @@
 										</tr>
 
 										<tr>
-											<td class="t-title">문의 종류*</td>
+											<td class="t-title">문의 유형 *</td>
 
 											<td><select class=" form-control input-sm sel"
 												name="one_cate_one">
-													<option>문의 유형 1</option>
-													<option>문의 유형 2</option>
-													<option>문의 유형 3</option>
-													<option>문의 유형 3</option>
-													<option>문의 유형 4</option>
+													<option>계정 분실</option>
+													<option>이용 문의</option>
+													<option>건의 사항</option>
+													<option>버그 및 오류 신고</option>
+													<option>기타</option>
 											</select></td>
 										</tr>
 
@@ -94,18 +94,18 @@
 												id="content"name="one_content" style="resize: none;"></textarea></td>
 										</tr>
 
-							
+
 									</tbody>
 								</table>
-							</form>
 
-
+						</form>
 
 								<div class="titlefoot text-right">
 									<button class="btn" id="registBtn">등록</button>
 									<button class="btn" id="listBtn">목록</button>
 								</div>
 
+						
 
 						</div>
 					</div>

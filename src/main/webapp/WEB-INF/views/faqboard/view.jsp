@@ -51,38 +51,29 @@
 						<h3>FAQ 상세</h3>
 					</div>
 					<form>
-						<c:if test="${login.type == 1}">
-
-							<div>
-								<label>DATE</label>
-								<c:if test="${faq_updatedate == null}">
-									<p>${faq.faq_regdate}</p>
-								</c:if>
-								<c:if test="${faq_updatedate != null}">
-									<p>${faq.faq_updatedate}</p>
-								</c:if>
-
-							</div>
-						</c:if>
+					
 
 						<div class="form-group">
 							<label>FAQ 유형</label> <input class="form-control" name='faq_type'
 								value="${faq.faq_type}" readonly>
 
 						</div>
+					<c:if test="${login.type == 1}">
 
+						
 
 						<div class="form-group">
 							<label>번호</label> <input class="form-control" name='faq_id'
 								value="${faq.faq_id}" readonly>
 						</div>
 
+						</c:if>
 				
 
 						<div class="form-group">
 							<label>내용</label>
-							<textarea class="form-control" rows="10" name='faq_content'
-								readonly>${faq.faq_content}</textarea>
+							<textarea class="form-control" rows="10" name='faq_content' 
+								readonly="readonly" style="resize: none;" >${faq.faq_content}</textarea>
 						</div>
 
 

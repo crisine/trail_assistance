@@ -66,7 +66,7 @@
 							<th>번호</th>
 						</c:if>
 						<th>개인/기관</th>
-						<th class="article_title">제목</th>
+						<th class="article_title">조력자 유형</th>
 						<th>공고 모집 시작일</th>
 						<th>공고 모집 마감일</th>
 						<c:if test="${login.type == 1}">

@@ -58,7 +58,7 @@
 											<th>번호</th>
 											<td>${article.article_id}</td>
 										</c:if>
-										<th class="title">제목</th>
+										<th class="title">조력자 유형</th>
 										<td colspan="6">${article.article_title}</td>
 
 									</tr>
